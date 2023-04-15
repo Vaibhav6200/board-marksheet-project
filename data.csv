@@ -1,0 +1,61 @@
+scholar_no,roll_no,student_name,father_name,mother_name,dob,student_class,school_name,Block,District,school_dice_code,examination_center,examination_center_code,examination_date,subject_1,subject_2,subject_3,subject_4,subject_5,subject_6,subject_7,subject_8,subject_9,marksheet_id
+1000,11000,vini,vini,vini,20-Mar-02,8,Nirma University,A,Chttorgarh,1100306,Inani Public School,1024,04-Apr-18,100,100,100,100,100,100,100,100,100,1188589
+1004,11001,jahnavi,jahnavi,jahnavi,30-Mar-00,8,Nirma University,C,Chttorgarh,1100309,Inani Public School,1031,04-Apr-18,20,20,20,20,20,20,20,20,20,1188590
+1008,11002,mukund,mukund,mukund,10-Apr-98,8,Nirma University,E,Chttorgarh,1100312,Inani Public School,1038,04-Apr-18,80,70,60,50,40,30,20,10,80,1188591
+1012,11003,sahil,sahil,sahil,20-Apr-96,8,Nirma University,A,Chttorgarh,1100315,Inani Public School,1045,04-Apr-18,30,30,30,30,30,30,30,30,30,1188592
+1016,11004,aneri,aneri,aneri,01-May-94,5,Nirma University,C,Chttorgarh,1100318,Inani Public School,1052,04-Apr-18,60,60,60,60,60,60,60,60,,1188593
+1020,11005,vaibhav,vaibhav,vaibhav,11-May-92,5,Nirma University,E,Chttorgarh,1100321,Inani Public School,1059,04-Apr-18,90,90,90,90,90,90,90,90,,1188594
+1024,11006,ketul,ketul,ketul,22-May-90,5,Nirma University,A,Chttorgarh,1100324,Inani Public School,1066,22-Feb-02,50,50,50,50,50,50,50,50,,1188595
+1028,11007,harshit,harshit,harshit,01-Jun-88,5,Nirma University,C,Chttorgarh,1100327,Inani Public School,1073,22-Feb-02,45,45,45,45,45,45,45,45,,1188596
+1032,11008,dev,dev,dev,12-Jun-86,5,Nirma University,E,Chttorgarh,1100330,Inani Public School,1080,22-Feb-02,40,40,40,40,40,40,40,40,,1188597
+1036,11009,deep,deep,deep,22-Jun-84,5,Nirma University,A,Chttorgarh,1100333,Inani Public School,1087,22-Feb-02,33,33,33,33,33,33,33,33,,1188598
+1040,11010,abitamim,abitamim,abitamim,03-Jul-82,5,Saint Pauls,C,Chttorgarh,1100336,Inani Public School,1094,29-Mar-14,32,32,32,32,32,32,32,32,,1188599
+1044,11011,lakshit,lakshit,lakshit,13-Jul-80,5,Saint Pauls,E,Chttorgarh,1100339,Inani Public School,1101,29-Mar-14,31,31,31,31,31,31,31,31,,1188600
+1048,11012,kartavya,kartavya,kartavya,24-Jul-78,5,Saint Pauls,A,Chttorgarh,1100342,Inani Public School,1108,29-Mar-14,30,30,30,30,30,30,30,30,,1188601
+1052,11013,heni,heni,heni,03-Aug-76,5,Saint Pauls,C,Chttorgarh,1100345,Inani Public School,1115,29-Mar-14,29,29,29,29,29,29,29,29,,1188602
+1056,11014,sheldon,sheldon,sheldon,14-Aug-74,5,Saint Pauls,E,Chttorgarh,1100348,Inani Public School,1122,15-Feb-10,28,28,28,28,28,28,28,28,,1188603
+1060,11015,tom,tom,tom,24-Aug-72,8,Saint Pauls,F,Chttorgarh,1100351,Inani Public School,1129,15-Feb-10,27,27,27,27,27,27,27,27,27,1188604
+1064,11016,thomas,thomas,thomas,04-Sep-70,8,Saint Pauls,D,Chttorgarh,1100354,Inani Public School,1136,15-Feb-10,26,26,26,26,26,26,26,26,26,1188605
+1068,11017,shelby,shelby,shelby,14-Sep-68,8,Saint Pauls,B,Chttorgarh,1100357,Inani Public School,1143,15-Feb-10,25,25,25,25,25,25,25,25,25,1188606
+1072,11018,john,john,john,25-Sep-66,8,Saint Pauls,F,Chttorgarh,1100360,Inani Public School,1150,15-Feb-10,24,24,24,24,24,24,24,24,24,1188607
+1076,11019,wick,wick,wick,05-Oct-64,8,Saint Pauls,D,Chttorgarh,1100363,Inani Public School,1157,15-Feb-10,23,23,23,23,23,23,23,23,23,1188608
+1080,11020,joffrey,joffrey,joffrey,16-Oct-62,8,DPS,B,Chttorgarh,1100366,Inani Public School,1164,15-Feb-10,22,22,22,22,22,22,22,22,22,1188609
+1084,11021,cersei,cersei,cersei,26-Oct-60,8,DPS,F,Chttorgarh,1100369,Inani Public School,1171,15-Feb-10,21,21,21,21,21,21,21,21,21,1188610
+1088,11022,gopal,gopal,gopal,06-Nov-58,5,DPS,D,Chttorgarh,1100372,Inani Public School,1178,29-Mar-14,20,20,20,20,20,20,20,20,,1188611
+1092,11023,sharda,sharda,sharda,16-Nov-56,5,DPS,B,Chttorgarh,1100375,Inani Public School,1185,29-Mar-14,19,19,19,19,19,19,19,19,,1188612
+1096,11024,rahil,rahil,rahil,27-Nov-54,5,DPS,F,Chttorgarh,1100378,Inani Public School,1192,29-Mar-14,18,18,18,18,18,18,18,18,,1188613
+1100,11025,utsav,utsav,utsav,07-Dec-52,5,DPS,D,Chttorgarh,1100381,Inani Public School,1199,29-Mar-14,17,17,17,17,17,17,17,17,,1188614
+1104,11026,dhrumil,dhrumil,dhrumil,18-Dec-50,5,DPS,B,Chttorgarh,1100384,Inani Public School,1206,29-Mar-14,16,16,16,16,16,16,16,16,,1188615
+1108,11027,payal,payal,payal,28-Dec-48,5,DPS,F,Chttorgarh,1100387,Inani Public School,1213,29-Mar-14,15,15,15,15,15,15,15,15,,1188616
+1112,11028,deepika,deepika,deepika,08-Jan-47,5,DPS,D,Chttorgarh,1100390,Inani Public School,1220,29-Mar-14,14,14,14,14,14,14,14,14,,1188617
+1116,11029,gargi,gargi,gargi,18-Jan-45,5,DPS,B,Chttorgarh,1100393,Inani Public School,1227,04-Apr-18,13,13,13,13,13,13,13,13,,1188618
+1120,11030,muskan,muskan,muskan,29-Jan-43,5,DPS,F,Chttorgarh,1100396,Inani Public School,1234,04-Apr-18,12,12,12,12,12,12,12,12,,1188619
+1124,11031,matrai,matrai,matrai,08-Feb-41,5,DPS,C,Chttorgarh,1100399,Tata School,1241,04-Apr-18,11,11,11,11,11,11,11,11,,1188620
+1128,11032,dhara,dhara,dhara,19-Feb-39,5,DPS,E,Chttorgarh,1100402,Tata School,1248,04-Apr-18,10,10,10,10,10,10,10,10,,1188621
+1132,11033,inzela,inzela,inzela,01-Mar-37,5,Aloak Pulblic school,F,Chttorgarh,1100405,Tata School,1255,04-Apr-18,9,9,9,9,9,9,9,9,,1188622
+1136,11034,vedant,vedant,vedant,12-Mar-35,5,Aloak Pulblic school,D,Bhilwara,1100408,Tata School,1262,04-Apr-18,8,8,8,8,8,8,8,8,,1188623
+1140,11035,unnat,unnat,unnat,22-Mar-33,5,Aloak Pulblic school,B,Bhilwara,1100411,Tata School,1269,22-Feb-02,7,7,7,7,7,7,7,7,,1188624
+1144,11036,chirag,chirag,chirag,02-Apr-31,5,Aloak Pulblic school,C,Bhilwara,1100414,Tata School,1276,23-Feb-02,6,6,6,6,6,6,6,6,,1188625
+1148,11037,abhay,abhay,abhay,12-Apr-29,5,Aloak Pulblic school,E,Bhilwara,1100417,Tata School,1283,24-Feb-02,5,5,5,5,5,5,5,5,,1188626
+1152,11038,marmik,marmik,marmik,23-Apr-27,8,Aloak Pulblic school,F,Bhilwara,1100420,Tata School,1290,25-Feb-02,4,4,4,4,4,4,4,4,4,1188627
+1156,11039,anuja,anuja,anuja,03-May-25,8,Aloak Pulblic school,D,Bhilwara,1100423,Tata School,1297,26-Feb-02,3,3,3,3,3,3,3,3,3,1188628
+1160,11040,aryan,aryan,aryan,14-May-23,8,Aloak Pulblic school,B,Bhilwara,1100426,Tata School,1304,27-Feb-02,2,2,2,2,2,2,2,2,2,1188629
+1164,11041,pandii,pandii,pandii,24-May-21,8,Aloak Pulblic school,C,Bhilwara,1100429,Tata School,1311,28-Feb-02,1,1,1,1,1,1,1,1,1,1188630
+1168,11042,sunil,sunil,sunil,04-Jun-19,8,Aloak Pulblic school,E,Bhilwara,1100432,Tata School,1318,01-Mar-02,0,0,0,0,0,0,0,0,0,1188631
+1172,11043,chiku,chiku,chiku,14-Jun-17,8,Aloak Pulblic school,F,Bhilwara,1100435,Tata School,1325,02-Mar-02,90,90,90,90,90,90,90,90,90,1188632
+1176,11044,arjun,arjun,arjun,25-Jun-15,8,Aloak Pulblic school,D,Bhilwara,1100438,Tata School,1332,03-Mar-02,80,80,80,80,80,80,80,80,80,1188633
+1180,11045,nakul,nakul,nakul,05-Jul-13,8,Aloak Pulblic school,B,Ahmedabad,1100441,Tata School,1339,04-Mar-02,70,70,70,70,70,70,70,70,70,1188634
+1184,11046,prisha,prisha,prisha,16-Jul-11,8,Aloak Pulblic school,C,Ahmedabad,1100444,Cambridge,1346,05-Mar-02,60,60,60,60,60,60,60,60,60,1188635
+1188,11047,trusha,trusha,trusha,26-Jul-09,8,Aloak Pulblic school,E,Ahmedabad,1100447,Cambridge,1353,06-Mar-02,50,50,50,50,50,50,50,50,50,1188636
+1192,11048,tisha,tisha,tisha,06-Aug-07,8,Aloak Pulblic school,F,Ahmedabad,1100450,Cambridge,1360,07-Mar-02,40,40,40,40,40,40,40,40,40,1188637
+1196,11049,rachit,rachit,rachit,16-Aug-05,8,Aloak Pulblic school,D,Ahmedabad,1100453,Cambridge,1367,08-Mar-02,30,30,30,30,30,30,30,30,30,1188638
+1200,11050,sarthak,sarthak,sarthak,27-Aug-03,8,LBS,C,Ahmedabad,1100456,Cambridge,1374,09-Mar-02,20,20,20,20,20,20,20,20,20,1188639
+1204,11051,vikas,vikas,vikas,06-Sep-01,8,LBS,E,Ahmedabad,1100459,Cambridge,1381,10-Mar-02,10,10,10,10,10,10,10,10,10,1188640
+1208,11052,ravij,ravij,ravij,01-Jun-88,8,LBS,F,Ahmedabad,1100462,Cambridge,1388,11-Mar-02,0,0,0,0,0,0,0,0,0,1188641
+1212,11053,dhyan,dhyan,dhyan,12-Jun-86,8,LBS,D,Ahmedabad,1100465,Cambridge,1395,12-Mar-02,50,50,50,50,50,50,50,50,50,1188642
+1216,11054,aman,aman,aman,20-Mar-02,8,LBS,B,Ahmedabad,1100468,Cambridge,1402,13-Mar-02,40,40,40,40,40,40,40,40,40,1188643
+1220,11055,ravi,ravi,ravi,30-Mar-00,8,LBS,C,Ahmedabad,1100471,Cambridge,1409,14-Mar-02,30,30,30,30,30,30,30,30,30,1188644
+1224,11056,ali asgar,ali asgar,ali asgar,10-Apr-98,8,LBS,E,Ahmedabad,1100474,Cambridge,1416,15-Mar-02,20,20,20,20,20,20,20,20,20,1188645
+1228,11057,ajey,ajey,ajey,20-Apr-96,8,LBS,F,Ahmedabad,1100477,Cambridge,1423,16-Mar-02,10,10,10,10,10,10,10,10,10,1188646
+1232,11058,tanmay,tanmay,tanmay,01-May-94,8,LBS,D,Ahmedabad,1100480,Cambridge,1430,17-Mar-02,90,90,90,90,90,90,90,90,90,1188647
+1236,11059,shruvi,shruvi,shruvi,11-May-92,8,LBS,B,Ahmedabad,1100483,Cambridge,1437,18-Mar-02,60,60,60,60,60,60,60,60,60,1188648
