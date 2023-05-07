@@ -12,21 +12,41 @@
 <body>
 
     <div class="container my-5 p-4 shadow border">
-        <h2>Upload Your Marksheet</h2>
+        <h3>Report Generator</h3>
         <form method="post" enctype="multipart/form-data">
-            {% csrf_token %}
-            <input class="form-control my-4" type="file" name="csv_file" id="csv_file" accept=".csv">
-            <button class="btn btn-warning mb-3">Upload</button>
+        {% csrf_token %}
+            <div class="d-flex align-items-center my-3">
+                <input class="form-control w-50 mr-4" type="file" name="csv_file" id="csv_file" accept=".csv">
+                <div class="dropdown mr-3">
+                    <button class="btn btn-warning dropdown-toggle" type="button" data-toggle="dropdown"> Print Format </button>
+                    <ul class="dropdown-menu">
+                        <li class="dropdown-header">select printing format</li>
+                        <li><a class="dropdown-item" href="#">Format 1</a></li>
+                        <li><a class="dropdown-item" href="#">Format 2</a></li>
+                        <li><a class="dropdown-item" href="#">Format 3</a></li>
+                    </ul>
+                </div>
+                <button class="btn btn-warning" type="submit">Generate Report</button>
+            </div>
         </form>
     </div>
 
-    {% if show_table %}
+
 
         <div class="container my-5 p-4 shadow border">
+            <form action="{% url 'app:search' %}" method="get">
+                {% csrf_token %}
+                <div class="d-flex">
+                    <input class="input-sm form-control " type="text" name="search" id="search" placeholder="search...">
+                    <button class="btn btn-info" type="submit">Search</button>
+                </div>
+            </form>
+
             <div class="container mt-5">
                 <div class="row">
                 <div class="col-md-12">
                     <table class="table table-striped">
+                        {% if details %}
                         <thead class="text-center">
                             <tr>
                                 <th>Scholar No</th>
@@ -40,8 +60,9 @@
                                 <th>School Name</th>
                             </tr>
                         </thead>
+                        {% endif %}
                         <tbody class="text-center">
-                            {% for row in marks %}
+                            {% for row in details %}
                             <tr>
                                 <td>{{ row.scholar_no }}</td>
                                 <td>{{ row.roll_no }}</td>
@@ -53,6 +74,8 @@
                                 <td><a class="btn btn-warning" href="{{row.report_card.url}}" target="_blank">view</a></td>
                                 <td>{{ row.school_name }}</td>
                             </tr>
+                            {% empty %}
+                                <h3>Nothing Found !!!</h3>
                             {% endfor %}
                         </tbody>
                     </table>
@@ -61,7 +84,6 @@
             </div>
 
         </div>
-    {% endif %}
 
     <script src='http://code.jquery.com/jquery-3.3.1.min.js' integrity='sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=' crossorigin='anonymous'></script>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js' integrity='sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49' crossorigin='anonymous'></script>

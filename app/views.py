@@ -8,7 +8,7 @@ from django.core.files import File
 from django.conf import settings
 import os
 from django.core.files.storage import default_storage
-
+from django.db.models import Q
 
 
 def getGrade(marks):
@@ -22,21 +22,6 @@ def getGrade(marks):
         return "C"
     else:
         return "D"
-
-
-def getDetails():
-    marks = Marksheet.objects.all()
-
-    show_table = True
-    if not marks:
-        show_table = False
-
-    params = {
-        'marks': marks,
-        'show_table': show_table,
-    }
-
-    return params
 
 
 def process_data(data):
@@ -112,8 +97,6 @@ def process_data(data):
         mymarksheet.save()
 
 
-
-
 def index(request):
     if request.method == "POST" and request.FILES['csv_file']:
         csv_file = request.FILES['csv_file']
@@ -124,7 +107,26 @@ def index(request):
 
         return redirect('/')        # this helps in prevention of form resubmission on reloading page
 
-    params = getDetails()
+    details = Marksheet.objects.all()
+    params = {'details': details}
     return render(request, "index.html", params)
 
 
+
+def search(request):
+    query = request.GET.get('search')
+    params = {}
+    if query:
+        results = Marksheet.objects.filter(
+            Q(roll_no=query) |
+            Q(school_dice_code=query) |
+            Q(scholar_no=query) |
+            Q(student_name__icontains=query) |
+            Q(school_name__icontains=query) |
+            Q(school_name__icontains=query)
+        )
+        params['details'] = results
+    else:
+        results = Marksheet.objects.all()
+        params['details'] = results
+    return render(request, "index.html", params)
