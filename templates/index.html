@@ -37,7 +37,7 @@
                                 <th>Average</th>
                                 <th>Grade</th>
                                 <th>Marksheet</th>
-
+                                <th>School Name</th>
                             </tr>
                         </thead>
                         <tbody class="text-center">
@@ -51,6 +51,7 @@
                                 <td>{{ row.average }}</td>
                                 <td>{{ row.grade }}</td>
                                 <td><a class="btn btn-warning" href="{{row.report_card.url}}" target="_blank">view</a></td>
+                                <td>{{ row.school_name }}</td>
                             </tr>
                             {% endfor %}
                         </tbody>
