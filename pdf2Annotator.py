@@ -1,64 +1,76 @@
 from pdf_annotate import PdfAnnotator, Appearance, Location
+import datetime
 
+
+hex_color = "#6471a6"
+fill_color = (0.392, 0.443, 0.651)
 
 def annotatePDF_format2(data):
-    annotator = PdfAnnotator('DIET1.pdf')
+    annotator = PdfAnnotator('marksheet_format_2.pdf')
 
     # Praman Patra Kramank
     annotator.add_annotation(
                 'text',
-                    Location(x1=110, y1=750, x2=170, y2=760, page=0),
-                    Appearance(content=data['marksheet_id'], font_size=10,  fill=(0,0,0)),
+                    Location(x1=110, y1=790, x2=270, y2=810, page=0),
+                    Appearance(content=data['marksheet_id'], font_size=15, fill=fill_color),
                     )
 
+
+    # SATRA (Examination date)
+    satra = data['examination_year']
+    annotator.add_annotation(
+                'text',
+                    Location(x1=280, y1=640, x2=500, y2=660, page=0),
+                    Appearance(content=satra, font_size=15,  fill=fill_color),
+                    )
 
     # School Name
     annotator.add_annotation(
                 'text',
-                    Location(x1=190, y1=595, x2=500, y2=605, page=0),
-                    Appearance(content=data['school_name'], font_size=10,  fill=(0,0,0)),
+                    Location(x1=200, y1=620, x2=500, y2=632, page=0),
+                    Appearance(content=data['school_name'], font_size=10,  fill=fill_color),
                     )
 
     # Scholar No
     annotator.add_annotation(
                 'text',
-                    Location(x1=125, y1=517, x2=180, y2=527, page=0),
-                    Appearance(content=data['scholar_no'], font_size=10,  fill=(0,0,0)),
+                    Location(x1=105, y1=530, x2=180, y2=542, page=0),
+                    Appearance(content=data['scholar_no'], font_size=10,  fill=fill_color),
                     )
 
     # roll_no
     annotator.add_annotation(
                 'text',
-                    Location(x1=200, y1=517, x2=250, y2=527, page=0),
-                    Appearance(content=data['roll_no'], font_size=10,  fill=(0,0,0)),
+                    Location(x1=180, y1=530, x2=250, y2=542, page=0),
+                    Appearance(content=data['roll_no'], font_size=10,  fill=fill_color),
                     )
 
     # district
     annotator.add_annotation(
                 'text',
-                    Location(x1=260, y1=517, x2=320, y2=527, page=0),
-                    Appearance(content=data['district'], font_size=10,  fill=(0,0,0)),
+                    Location(x1=250, y1=530, x2=320, y2=542, page=0),
+                    Appearance(content=data['district'], font_size=10,  fill=fill_color),
                     )
 
     # block
     annotator.add_annotation(
                 'text',
-                    Location(x1=340, y1=517, x2=370, y2=527, page=0),
-                    Appearance(content=data['block'], font_size=10,  fill=(0,0,0)),
+                    Location(x1=380, y1=530, x2=390, y2=542, page=0),
+                    Appearance(content=data['block'], font_size=10,  fill=fill_color),
                     )
 
     # school_dice_code
     annotator.add_annotation(
                 'text',
-                    Location(x1=390, y1=517, x2=470, y2=527, page=0),
-                    Appearance(content=data['school_dice_code'], font_size=10,  fill=(0,0,0)),
+                    Location(x1=230, y1=597, x2=470, y2=610, page=0),
+                    Appearance(content=data['school_dice_code'], font_size=10,  fill=fill_color),
                     )
 
     # kendra_code
     annotator.add_annotation(
                 'text',
-                    Location(x1=480, y1=517, x2=530, y2=527, page=0),
-                    Appearance(content=data['kendra_code'], font_size=10,  fill=(0,0,0)),
+                    Location(x1=460, y1=530, x2=530, y2=542, page=0),
+                    Appearance(content=data['kendra_code'], font_size=10,  fill=fill_color),
                     )
 
 
@@ -66,131 +78,136 @@ def annotatePDF_format2(data):
     # student_name
     annotator.add_annotation(
                 'text',
-                    Location(x1=270, y1=497, x2=500, y2=507, page=0),
-                    Appearance(content=data['student_name'], font_size=10,  fill=(0,0,0)),
+                    Location(x1=250, y1=510, x2=500, y2=522, page=0),
+                    Appearance(content=data['student_name'], font_size=10,  fill=fill_color),
                     )
 
     # mother_name
     annotator.add_annotation(
                 'text',
-                    Location(x1=170, y1=473, x2=300, y2=483, page=0),
-                    Appearance(content=data['mother_name'], font_size=10,  fill=(0,0,0)),
+                    Location(x1=170, y1=485, x2=300, y2=497, page=0),
+                    Appearance(content=data['mother_name'], font_size=10,  fill=fill_color),
                     )
 
     # father_name
     annotator.add_annotation(
                 'text',
-                    Location(x1=370, y1=473, x2=520, y2=483, page=0),
-                    Appearance(content=data['father_name'], font_size=10,  fill=(0,0,0)),
+                    Location(x1=370, y1=485, x2=520, y2=497, page=0),
+                    Appearance(content=data['father_name'], font_size=10,  fill=fill_color),
                     )
 
     # dob
     annotator.add_annotation(
                 'text',
-                    Location(x1=200, y1=445, x2=300, y2=455, page=0),
-                    Appearance(content=data['dob'], font_size=10,  fill=(0,0,0)),
+                    Location(x1=170, y1=457, x2=250, y2=470, page=0),
+                    Appearance(content=data['dob'], font_size=10,  fill=fill_color),
                     )
 
     # dob in words
     dob_in_words="twenty two february two thousand two"
     annotator.add_annotation(
                 'text',
-                    Location(x1=320, y1=450, x2=520, y2=460, page=0),
-                    Appearance(content=dob_in_words, font_size=10,  fill=(0,0,0)),
+                    Location(x1=320, y1=460, x2=520, y2=472, page=0),
+                    Appearance(content=dob_in_words, font_size=10,  fill=fill_color),
                     )
 
     # examination_year
     annotator.add_annotation(
                 'text',
-                    Location(x1=330, y1=425, x2=520, y2=435, page=0),
-                    Appearance(content=data['examination_date'], font_size=10,  fill=(0,0,0)),
+                    Location(x1=310, y1=435, x2=520, y2=447, page=0),
+                    Appearance(content=data['examination_year'], font_size=10,  fill=fill_color),
                     )
 
     # *** ENTER MARKS ***
-    # Subject - Hindi
+    # Subject - HINDI
     annotator.add_annotation(
                 'text',
-                    Location(x1=485, y1=330, x2=510, y2=340, page=0),
-                    Appearance(content=str(data['hindi']), font_size=10,  fill=(0,0,0)),
+                    Location(x1=460, y1=340, x2=480, y2=352, page=0),
+                    Appearance(content=str(data['HINDI']), font_size=10,  fill=fill_color),
                     )
 
-    # Subject - English
+    # Subject - ENGLISH
     annotator.add_annotation(
                 'text',
-                    Location(x1=484, y1=305, x2=510, y2=314, page=0),
-                    Appearance(content=str(data['english']), font_size=10,  fill=(0,0,0)),
+                    Location(x1=460, y1=315, x2=480, y2=327, page=0),
+                    Appearance(content=str(data['ENGLISH']), font_size=10,  fill=fill_color),
                     )
 
-    # Subject - Maths
+    # Subject - MATHS
     annotator.add_annotation(
                 'text',
-                    Location(x1=484, y1=279, x2=510, y2=289, page=0),
-                    Appearance(content=str(data['maths']), font_size=10,  fill=(0,0,0)),
+                    Location(x1=460, y1=290, x2=480, y2=302, page=0),
+                    Appearance(content=str(data['MATHS']), font_size=10,  fill=fill_color),
                     )
 
     # Subject - Science
     annotator.add_annotation(
                 'text',
-                    Location(x1=484, y1=255, x2=510, y2=265, page=0),
-                    Appearance(content=str(data['science']), font_size=10,  fill=(0,0,0)),
+                    Location(x1=460, y1=265, x2=480, y2=277, page=0),
+                    Appearance(content=str(data['SCIENCE']), font_size=10,  fill=fill_color),
                     )
 
     # Subject - socialScience
     annotator.add_annotation(
                 'text',
-                    Location(x1=484, y1=230, x2=510, y2=240, page=0),
-                    Appearance(content=str(data['social_science']), font_size=10,  fill=(0,0,0)),
+                    Location(x1=460, y1=240, x2=480, y2=252, page=0),
+                    Appearance(content=str(data['S.S']), font_size=10,  fill=fill_color),
                     )
 
-    # Subject - tritiya_bhasha
+    # Subject - SANSKRIT
     annotator.add_annotation(
                 'text',
-                    Location(x1=484, y1=205, x2=510, y2=215, page=0),
-                    Appearance(content=str(data['tritiya_bhasha']), font_size=10,  fill=(0,0,0)),
+                    Location(x1=460, y1=215, x2=480, y2=227, page=0),
+                    Appearance(content=str(data['SANSKRIT']), font_size=10,  fill=fill_color),
                     )
 
     # Subject - Overall Grade
     annotator.add_annotation(
                 'text',
-                    Location(x1=484, y1=182, x2=510, y2=192, page=0),
-                    Appearance(content=str(data['overall_grade']), font_size=10,  fill=(0,0,0)),
+                    Location(x1=460, y1=195, x2=480, y2=207, page=0),
+                    Appearance(content=str(data['GRADETOT']), font_size=10,  fill=fill_color),
                     )
 
-    # Subject - experience
+    # Subject - W.E.
     annotator.add_annotation(
                 'text',
-                    Location(x1=484, y1=163, x2=510, y2=173, page=0),
-                    Appearance(content=str(data['experience']), font_size=10,  fill=(0,0,0)),
+                    Location(x1=460, y1=170, x2=480, y2=182, page=0),
+                    Appearance(content=str(data['W.E.']), font_size=10,  fill=fill_color),
                     )
 
-    # Subject - creativity
+    # Subject - PHI.
     annotator.add_annotation(
                 'text',
-                    Location(x1=484, y1=138, x2=510, y2=148, page=0),
-                    Appearance(content=str(data['creativity']), font_size=10,  fill=(0,0,0)),
+                    Location(x1=460, y1=145, x2=480, y2=157, page=0),
+                    Appearance(content=str(data['PHI.']), font_size=10,  fill=fill_color),
                     )
 
-    # Subject - health
+    # Subject - ARTS
     annotator.add_annotation(
                 'text',
-                    Location(x1=484, y1=115, x2=510, y2=125, page=0),
-                    Appearance(content=str(data['health']), font_size=10,  fill=(0,0,0)),
+                    Location(x1=460, y1=125, x2=480, y2=137, page=0),
+                    Appearance(content=str(data['ARTS']), font_size=10,  fill=fill_color),
                     )
 
 
 
     # Examination Center
+    exam_center = "Chittorgarh"
     annotator.add_annotation(
                 'text',
-                    Location(x1=155, y1=65, x2=500, y2=75, page=0),
-                    Appearance(content=data['examination_center'], font_size=10,  fill=(0,0,0)),
+                    Location(x1=130, y1=70, x2=500, y2=82, page=0),
+                    Appearance(content=exam_center, font_size=10,  fill=fill_color),
                     )
 
     # Examination Date
+    # Get current date
+    now = datetime.datetime.now()
+    formatted_date = now.strftime("%d-%b-%Y").lower()
+
     annotator.add_annotation(
                 'text',
-                    Location(x1=155, y1=43, x2=350, y2=53, page=0),
-                    Appearance(content=data['examination_date'], font_size=10,  fill=(0,0,0)),
+                    Location(x1=130, y1=45, x2=350, y2=57, page=0),
+                    Appearance(content=formatted_date, font_size=10,  fill=fill_color),
                     )
 
 
@@ -199,30 +216,35 @@ def annotatePDF_format2(data):
 
 
 data = {
-    "marksheet_id":"1122334455",
-    "school_name": "St. Paul's Sr. Sec. School",
     "scholar_no": "20bce308",
     "roll_no": "1104563",
-    "district": "Chittorgarh",
-    "block": "A",
-    "school_dice_code": "1032",
-    "kendra_code": "390474",
-    "student_name": "vaibhav paliwal",
-    "father_name": "gopal paliwal",
-    "mother_name": "sharda paliwal",
+    "student_name": "student_name",
+    "father_name": "father_name",
+    "mother_name": "mother_name",
     "dob": "22-02-2002",
-    "hindi": "A",
-    "english": "B",
-    "maths": "A+",
-    "science": "A",
-    "social_science": "C",
-    "tritiya_bhasha": "B",
-    "experience": "A+",
-    "creativity": "A+",
-    "health": "B",
-    "overall_grade": "A",
-    "examination_center": "Delhi Public school, Udaipur",
-    "examination_date": "29-march-2020",
+    # "student_class": "8",     # NOT USED
+    "school_name": "St. Paul's Sr. Sec. School",
+    "block": "A",
+    "district": "Chittorgarh",
+    "school_dice_code": "1032",
+
+    # "examination_center": "Chittorgarh",  # NOT USED
+    # "examination_center_code": "9001",    # NOT USED
+    "examination_year": "2019 - 20",
+
+    "HINDI": "A",
+    "ENGLISH": "B",
+    "SCIENCE": "A",
+    "S.S": "C",     # Social Science
+    "MATHS": "A+",
+    "SANSKRIT": "B",
+    "W.E.": "C",    # working education
+    "PHI.": "A+",
+    "ARTS": "A",
+    "GRADETOT": "A",
+
+    "marksheet_id":"1122334455",
+    "kendra_code": "390474",
 }
 
 annotatePDF_format2(data)
