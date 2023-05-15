@@ -7,7 +7,7 @@ import os
 def annotatePDF(data):
     base_dir = settings.BASE_DIR
     path = os.path.join(base_dir, 'media')
-    template = os.path.join(path, 'DIET.pdf')
+    template = os.path.join(path, 'marksheet_format_1.pdf')
     annotator = PdfAnnotator(template)
 
     # ***** Top Left Annotations *****
@@ -160,19 +160,19 @@ def annotatePDF(data):
                     Appearance(content=str(data['examination_center']), font_size=10,  fill=(0,0,0)),
                     )
 
-    # Date
-    # Get the current date and format it
-    # now = datetime.now()
-    # date_string = now.strftime('%d-%m-%Y')
+    # Current Date
+    now = datetime.datetime.now()
+    formatted_date = now.strftime("%d-%b-%Y").lower()
 
     annotator.add_annotation(
                 'text',
                     Location(x1=70, y1=33, x2=400, y2=48, page=0),
-                    Appearance(content=str(data['examination_date']), font_size=10,  fill=(0,0,0)),
-                    )
+                    Appearance(content=formatted_date, font_size=10,  fill=(0,0,0)),
+                )
 
 
-    output_file_name = data['roll_no'] + '.pdf'
+    output_file_name = data['roll_no'] + "_" + data['student_name'] + '.pdf'
+
 
 
     # Generate our Report card here
