@@ -352,8 +352,8 @@ def index(request):
         'details_1': details1,
         'details_2': details2,
         'details_3': details3,
+        'combined_details': [details1, details2, details3],
     }
-
 
     return render(request, "index.html", params)
 
