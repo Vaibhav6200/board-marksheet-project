@@ -293,18 +293,18 @@ def annotatePDF_format3(data):
                     Appearance(content=str(data['physical_100']), font_size=10,  fill=fill_color),
                     )
 
-    # total_marks
+    # percentage
     annotator.add_annotation(
                 'text',
                     Location(x1=455, y1=170, x2=500, y2=182, page=0),
-                    Appearance(content=str(data['total_marks']), font_size=10,  fill=fill_color),
+                    Appearance(content=str(data['percentage']), font_size=10,  fill=fill_color),
                     )
 
-    # Parinaam
+    # result
     annotator.add_annotation(
                 'text',
                     Location(x1=110, y1=145, x2=170, y2=157, page=0),
-                    Appearance(content=data['parinaam'], font_size=10,  fill=fill_color),
+                    Appearance(content=data['result'], font_size=10,  fill=fill_color),
                     )
 
     # shreni
@@ -377,8 +377,8 @@ def annotatePDF_format3(data):
 #     "physical_20": "10",
 #     "physical_80": "80",
 #     "physical_100": "100",
-#     "total_marks": "85%",
-#     "parinaam": "PASS / FAIL",
+#     "percentage": "85%",
+#     "result": "PASS / FAIL",
 #     "shreni": "first  / second / third",
 #     "marksheet_id":"1122334455",
 # }
