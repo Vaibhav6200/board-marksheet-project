@@ -348,8 +348,13 @@ def annotatePDF_format3(data):
 #     "mother_name": "mother_name",
 #     "dob": "22-02-2002",
 #     "swayam_pathi": "Regular / Private",
-#     "district": "Chittorgarh",
 #     "school_name": "St. Paul's Sr. Sec. School",
+#     "district": "Chittorgarh",
+
+#     "marksheet_id":"1122334455",
+#     "result": "PASS / FAIL",
+#     "shreni": "first  / second / third",
+#     "percentage": "85%",
 #     "hindi_20": "20",
 #     "hindi_80": "80",
 #     "hindi_100": "100",
@@ -377,8 +382,4 @@ def annotatePDF_format3(data):
 #     "physical_20": "10",
 #     "physical_80": "80",
 #     "physical_100": "100",
-#     "percentage": "85%",
-#     "result": "PASS / FAIL",
-#     "shreni": "first  / second / third",
-#     "marksheet_id":"1122334455",
 # }

@@ -75,7 +75,7 @@ def process_marksheet_1(data):
         dob_formatted = dob_datetime.strftime('%Y-%m-%d')       # Convert datetime object to the desired format
 
         exam_date_datetime = datetime.strptime(examination_date, '%d-%b-%y')
-        exam_date_formatted = dob_datetime.strftime('%Y-%m-%d')
+        exam_date_formatted = exam_date_datetime.strftime('%Y-%m-%d')
 
 
         # Generate our Marksheet
@@ -166,7 +166,7 @@ def process_marksheet_2(data):
         dob_formatted = dob_datetime.strftime('%Y-%m-%d')       # Convert datetime object to the desired format
 
         exam_date_datetime = datetime.strptime(examination_date, '%d-%b-%y')
-        exam_date_formatted = dob_datetime.strftime('%Y-%m-%d')
+        exam_date_formatted = exam_date_datetime.strftime('%Y-%m-%d')
 
 
         # Generate our Marksheet
@@ -197,7 +197,129 @@ def process_marksheet_2(data):
 
 
 def process_marksheet_3(data):
-    print("Marksheet 3 Format Selected")
+    rows = data.shape[0]
+    for row in range(rows):
+        # Fetch Individual Student Data
+        scholar_no = data.loc[row, 'scholar_no']
+        roll_no = data.loc[row, 'roll_no']
+        student_name = data.loc[row, 'student_name']
+        father_name = data.loc[row, 'father_name']
+        mother_name = data.loc[row, 'mother_name']
+        dob = data.loc[row, 'dob']
+        swayam_pathi = data.loc[row, 'swayam_pathi']
+        student_class = data.loc[row, 'student_class']
+        school_name = data.loc[row, 'school_name']
+        district = data.loc[row, 'district']
+        block = data.loc[row, 'block']
+        school_dice_code = data.loc[row, 'school_dice_code']
+        examination_center_code = data.loc[row, 'examination_center_code']
+        marksheet_id = data.loc[row, 'marksheet_id']
+        examination_date = data.loc[row, 'examination_date']
+        result = data.loc[row, 'result']
+        shreni = data.loc[row, 'shreni']
+        percentage = data.loc[row, 'percentage']
+        hindi_20 = data.loc[row, 'hindi_20']
+        hindi_80 = data.loc[row, 'hindi_80']
+        hindi_100 = data.loc[row, 'hindi_100']
+        english_20 = data.loc[row, 'english_20']
+        english_80 = data.loc[row, 'english_80']
+        english_100 = data.loc[row, 'english_100']
+        maths_20 = data.loc[row, 'maths_20']
+        maths_80 = data.loc[row, 'maths_80']
+        maths_100 = data.loc[row, 'maths_100']
+        science_20 = data.loc[row, 'science_20']
+        science_80 = data.loc[row, 'science_80']
+        science_100 = data.loc[row, 'science_100']
+        sanskrit_20 = data.loc[row, 'sanskrit_20']
+        sanskrit_80 = data.loc[row, 'sanskrit_80']
+        sanskrit_100 = data.loc[row, 'sanskrit_100']
+        social_science_20 = data.loc[row, 'social_science_20']
+        social_science_80 = data.loc[row, 'social_science_80']
+        social_science_100 = data.loc[row, 'social_science_100']
+        work_education_20 = data.loc[row, 'work_education_20']
+        work_education_80 = data.loc[row, 'work_education_80']
+        work_education_100 = data.loc[row, 'work_education_100']
+        arts_20 = data.loc[row, 'arts_20']
+        arts_80 = data.loc[row, 'arts_80']
+        arts_100 = data.loc[row, 'arts_100']
+        physical_20 = data.loc[row, 'physical_20']
+        physical_80 = data.loc[row, 'physical_80']
+        physical_100 = data.loc[row, 'physical_100']
+
+
+        report_data = {
+            'scholar_no': str(scholar_no),
+            'roll_no': str(roll_no),
+            'student_name': student_name,
+            'father_name': father_name,
+            'mother_name': mother_name,
+            'dob': dob,
+            'swayam_pathi': swayam_pathi,
+            'school_name': school_name,
+            'district': district,
+            'marksheet_id': str(marksheet_id),
+            "result": result,
+            "shreni": shreni,
+            "percentage": percentage,
+            "hindi_20": hindi_20,
+            "hindi_80": hindi_80,
+            "hindi_100": hindi_100,
+            "english_20": english_20,
+            "english_80": english_80,
+            "english_100": english_100,
+            "maths_20": maths_20,
+            "maths_80": maths_80,
+            "maths_100": maths_100,
+            "science_20": science_20,
+            "science_80": science_80,
+            "science_100": science_100,
+            "sanskrit_20": sanskrit_20,
+            "sanskrit_80": sanskrit_80,
+            "sanskrit_100": sanskrit_100,
+            "social_science_20": social_science_20,
+            "social_science_80": social_science_80,
+            "social_science_100": social_science_100,
+            "work_education_20": work_education_20,
+            "work_education_80": work_education_80,
+            "work_education_100": work_education_100,
+            "arts_20": arts_20,
+            "arts_80": arts_80,
+            "arts_100": arts_100,
+            "physical_20": physical_20,
+            "physical_80": physical_80,
+            "physical_100": physical_100,
+        }
+
+
+        dob_datetime = datetime.strptime(dob, '%d-%b-%y')       # Convert date string to datetime object
+        dob_formatted = dob_datetime.strftime('%Y-%m-%d')       # Convert datetime object to the desired format
+
+        exam_date_datetime = datetime.strptime(examination_date, '%d-%b-%y')
+        exam_date_formatted = exam_date_datetime.strftime('%Y-%m-%d')
+
+
+        # Generate our Marksheet
+        output_file_name = annotatePDF(report_data)
+        pdf_file_path = os.path.join('pdf_files', output_file_name)
+
+
+        # *** Add Details in Database ***
+        # Step 1: Create School Table
+        school_obj = None
+        try:
+            school_obj = SchoolDetail.objects.get(school_name=school_name, district=district, block=block, examination_center_code=examination_center_code, school_dice_code=school_dice_code)
+        except SchoolDetail.DoesNotExist:
+            school_obj = SchoolDetail(school_name=school_name, district=district, block=block, examination_center_code=examination_center_code, school_dice_code=school_dice_code)
+            school_obj.save()
+
+        # Step 2: Create Student Table (Foreign Key on School)
+        student_obj = StudentDetail(school=school_obj, scholar_no=scholar_no, roll_no=roll_no, student_name=student_name, father_name=father_name, mother_name=mother_name, dob=dob_formatted, student_class=student_class)
+        student_obj.save()
+
+        # Step 3: Create Marksheet Table (Foreign Key on Student)
+        marksheet_obj = MarksheetFormat_3(marksheet_id=marksheet_id, student=student_obj, result=result, shreni=shreni, percentage=percentage, examination_date=exam_date_formatted, hindi_20 = hindi_20, hindi_80 = hindi_80, hindi_100 = hindi_100, english_20 = english_20, english_80 = english_80, english_100 = english_100, maths_20 = maths_20, maths_80 = maths_80, maths_100 = maths_100, science_20 = science_20, science_80 = science_80, science_100 = science_100, sanskrit_20 = sanskrit_20, sanskrit_80 = sanskrit_80, sanskrit_100 = sanskrit_100, social_science_20 = social_science_20, social_science_80 = social_science_80, social_science_100 = social_science_100, work_education_20 = work_education_20, work_education_80 = work_education_80, work_education_100 = work_education_100, arts_20 = arts_20, arts_80 = arts_80, arts_100 = arts_100, physical_20 = physical_20, physical_80 = physical_80, physical_100 = physical_100)
+        marksheet_obj.report_card.name = pdf_file_path
+        marksheet_obj.save()
 
 
 def index(request):
@@ -222,8 +344,15 @@ def index(request):
 
 
     # MAKE SURE TO UPDATE THIS CONDITION
-    details = MarksheetFormat_1.objects.all()
-    params = {'details': details}
+    details1 = MarksheetFormat_1.objects.all()
+    details2 = MarksheetFormat_2.objects.all()
+    details3 = MarksheetFormat_3.objects.all()
+
+    params = {
+        'details_1': details1,
+        'details_2': details2,
+        'details_3': details3,
+    }
 
 
     return render(request, "index.html", params)

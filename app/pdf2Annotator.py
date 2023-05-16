@@ -73,11 +73,11 @@ def annotatePDF_format2(data):
                     Appearance(content=data['school_dice_code'], font_size=10,  fill=fill_color),
                     )
 
-    # kendra_code
+    # examination_center_code
     annotator.add_annotation(
                 'text',
                     Location(x1=460, y1=530, x2=530, y2=542, page=0),
-                    Appearance(content=data['kendra_code'], font_size=10,  fill=fill_color),
+                    Appearance(content=data['examination_center_code'], font_size=10,  fill=fill_color),
                     )
 
 
@@ -186,7 +186,7 @@ def annotatePDF_format2(data):
     annotator.add_annotation(
                 'text',
                     Location(x1=460, y1=145, x2=480, y2=157, page=0),
-                    Appearance(content=str(data['physical.']), font_size=10,  fill=fill_color),
+                    Appearance(content=str(data['physical']), font_size=10,  fill=fill_color),
                     )
 
     # Subject - arts

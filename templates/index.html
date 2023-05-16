@@ -46,7 +46,7 @@
                 <div class="row">
                 <div class="col-md-12">
                     <table class="table table-striped">
-                        {% if details %}
+                        {% if details_1 %}
                         <thead class="text-center">
                             <tr>
                                 <th>Scholar No</th>
@@ -54,25 +54,23 @@
                                 <th>Student Name</th>
                                 <th>Class</th>
                                 <th>Examination Date</th>
-                                <th>Average</th>
-                                <th>Grade</th>
-                                <th>Marksheet</th>
+                                <th>Total Grade</th>
                                 <th>School Name</th>
+                                <th>Marksheet</th>
                             </tr>
                         </thead>
                         {% endif %}
                         <tbody class="text-center">
-                            {% for row in details %}
+                            {% for row in details_1 %}
                             <tr>
-                                <td>{{ row.scholar_no }}</td>
-                                <td>{{ row.roll_no }}</td>
-                                <td>{{ row.student_name }}</td>
-                                <td>{{ row.student_class }}</td>
+                                <td>{{ row.student.scholar_no }}</td>
+                                <td>{{ row.student.roll_no }}</td>
+                                <td>{{ row.student.student_name }}</td>
+                                <td>{{ row.student.student_class }}</td>
                                 <td>{{ row.examination_date }}</td>
-                                <td>{{ row.average }}</td>
-                                <td>{{ row.grade }}</td>
+                                <td>{{ row.total_grade }}</td>
+                                <td>{{ row.student.school.school_name }}</td>
                                 <td><a class="btn btn-warning" href="{{row.report_card.url}}" target="_blank">view</a></td>
-                                <td>{{ row.school_name }}</td>
                             </tr>
                             {% empty %}
                                 <h3>Nothing Found !!!</h3>
