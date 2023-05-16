@@ -161,7 +161,7 @@ def annotatePDF(data):
                     )
 
     # Current Date
-    now = datetime.datetime.now()
+    now = datetime.now()
     formatted_date = now.strftime("%d-%b-%Y").lower()
 
     annotator.add_annotation(

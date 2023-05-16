@@ -99,13 +99,26 @@ def process_data(data):
 
 def index(request):
     if request.method == "POST" and request.FILES['csv_file']:
-        csv_file = request.FILES['csv_file']
-        data = pd.read_csv(csv_file)
+        selected_format = request.POST.get("dropdown_button")
 
-        # Process Data (add all data to our database)
-        process_data(data)
+        # Marksheet format 1
+        if selected_format == "format_1":
+            csv_file = request.FILES['csv_file']
+            data = pd.read_csv(csv_file)
 
-        return redirect('/')        # this helps in prevention of form resubmission on reloading page
+            # Process Data (add all data to our database)
+            process_data(data)
+
+        # Marksheet Format 2
+        elif selected_format == "format_2":
+            pass
+
+        # Marksheet Format 3
+        elif selected_format == "format_3":
+            pass
+
+
+        # return redirect('/')        # this helps in prevention of form resubmission on reloading page
 
     details = Marksheet.objects.all()
     params = {'details': details}

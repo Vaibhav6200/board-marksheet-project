@@ -126,74 +126,74 @@ def annotatePDF_format2(data):
                     )
 
     # *** ENTER MARKS ***
-    # Subject - HINDI
+    # Subject - hindi
     annotator.add_annotation(
                 'text',
                     Location(x1=460, y1=340, x2=480, y2=352, page=0),
-                    Appearance(content=str(data['HINDI']), font_size=10,  fill=fill_color),
+                    Appearance(content=str(data['hindi']), font_size=10,  fill=fill_color),
                     )
 
-    # Subject - ENGLISH
+    # Subject - english
     annotator.add_annotation(
                 'text',
                     Location(x1=460, y1=315, x2=480, y2=327, page=0),
-                    Appearance(content=str(data['ENGLISH']), font_size=10,  fill=fill_color),
+                    Appearance(content=str(data['english']), font_size=10,  fill=fill_color),
                     )
 
-    # Subject - MATHS
+    # Subject - maths
     annotator.add_annotation(
                 'text',
                     Location(x1=460, y1=290, x2=480, y2=302, page=0),
-                    Appearance(content=str(data['MATHS']), font_size=10,  fill=fill_color),
+                    Appearance(content=str(data['maths']), font_size=10,  fill=fill_color),
                     )
 
-    # Subject - Science
+    # Subject - science
     annotator.add_annotation(
                 'text',
                     Location(x1=460, y1=265, x2=480, y2=277, page=0),
-                    Appearance(content=str(data['SCIENCE']), font_size=10,  fill=fill_color),
+                    Appearance(content=str(data['science']), font_size=10,  fill=fill_color),
                     )
 
-    # Subject - socialScience
+    # Subject - socialscience
     annotator.add_annotation(
                 'text',
                     Location(x1=460, y1=240, x2=480, y2=252, page=0),
-                    Appearance(content=str(data['S.S']), font_size=10,  fill=fill_color),
+                    Appearance(content=str(data['social_science']), font_size=10,  fill=fill_color),
                     )
 
-    # Subject - SANSKRIT
+    # Subject - sanskrit
     annotator.add_annotation(
                 'text',
                     Location(x1=460, y1=215, x2=480, y2=227, page=0),
-                    Appearance(content=str(data['SANSKRIT']), font_size=10,  fill=fill_color),
+                    Appearance(content=str(data['sanskrit']), font_size=10,  fill=fill_color),
                     )
 
     # Subject - Overall Grade
     annotator.add_annotation(
                 'text',
                     Location(x1=460, y1=195, x2=480, y2=207, page=0),
-                    Appearance(content=str(data['GRADETOT']), font_size=10,  fill=fill_color),
+                    Appearance(content=str(data['total_grade']), font_size=10,  fill=fill_color),
                     )
 
-    # Subject - W.E.
+    # Subject - work_education
     annotator.add_annotation(
                 'text',
                     Location(x1=460, y1=170, x2=480, y2=182, page=0),
-                    Appearance(content=str(data['W.E.']), font_size=10,  fill=fill_color),
+                    Appearance(content=str(data['work_education']), font_size=10,  fill=fill_color),
                     )
 
-    # Subject - PHI.
+    # Subject - physical.
     annotator.add_annotation(
                 'text',
                     Location(x1=460, y1=145, x2=480, y2=157, page=0),
-                    Appearance(content=str(data['PHI.']), font_size=10,  fill=fill_color),
+                    Appearance(content=str(data['physical.']), font_size=10,  fill=fill_color),
                     )
 
-    # Subject - ARTS
+    # Subject - arts
     annotator.add_annotation(
                 'text',
                     Location(x1=460, y1=125, x2=480, y2=137, page=0),
-                    Appearance(content=str(data['ARTS']), font_size=10,  fill=fill_color),
+                    Appearance(content=str(data['arts']), font_size=10,  fill=fill_color),
                     )
 
 
@@ -251,17 +251,20 @@ def annotatePDF_format2(data):
 #     # "examination_center_code": "9001",    # NOT USED
 #     "examination_year": "2019 - 20",
 
-#     "HINDI": "A",
-#     "ENGLISH": "B",
-#     "SCIENCE": "A",
-#     "S.S": "C",     # Social Science
-#     "MATHS": "A+",
-#     "SANSKRIT": "B",
-#     "W.E.": "C",    # working education
-#     "PHI.": "A+",
-#     "ARTS": "A",
-#     "GRADETOT": "A",
+#     "hindi": "A",
+#     "english": "B",
+#     "science": "A",
+#     "social_science": "C",     # Social science
+#     "maths": "A+",
+#     "sanskrit": "B",
+#     "work_education": "C",    # working education
+#     "physical.": "A+",
+#     "arts": "A",
+#     "total_grade": "A",
 
 #     "marksheet_id":"1122334455",
 #     "kendra_code": "390474",
 # }
+
+
+# marksheet_format_2 = ['scholar_no', 'roll_no', 'student_name', 'father_name', 'mother_name', 'dob', 'school_name', 'block', 'district', 'school_dice_code', 'examination_year', 'hindi', 'english', 'science', 'social_science', 'maths', 'sanskrit', 'work_education', 'physical', 'arts', 'total_grade', 'marksheet_id', 'kendra_code']
