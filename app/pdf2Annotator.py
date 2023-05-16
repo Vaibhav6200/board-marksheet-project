@@ -24,7 +24,7 @@ def annotatePDF_format2(data):
 
 
     # SATRA (Examination date)
-    satra = data['examination_year']
+    satra = data['examination_date']
     annotator.add_annotation(
                 'text',
                     Location(x1=280, y1=640, x2=500, y2=660, page=0),
@@ -118,11 +118,11 @@ def annotatePDF_format2(data):
                     Appearance(content=dob_in_words, font_size=10,  fill=fill_color),
                     )
 
-    # examination_year
+    # examination_date
     annotator.add_annotation(
                 'text',
                     Location(x1=310, y1=435, x2=520, y2=447, page=0),
-                    Appearance(content=data['examination_year'], font_size=10,  fill=fill_color),
+                    Appearance(content=data['examination_date'], font_size=10,  fill=fill_color),
                     )
 
     # *** ENTER MARKS ***
@@ -241,15 +241,16 @@ def annotatePDF_format2(data):
 #     "father_name": "father_name",
 #     "mother_name": "mother_name",
 #     "dob": "22-02-2002",
-#     # "student_class": "8",     # NOT USED
+#     "student_class": "8",     # NOT USED
 #     "school_name": "St. Paul's Sr. Sec. School",
 #     "block": "A",
 #     "district": "Chittorgarh",
 #     "school_dice_code": "1032",
+#     "examination_center_code": "9001",    # NOT USED
 
-#     # "examination_center": "Chittorgarh",  # NOT USED
-#     # "examination_center_code": "9001",    # NOT USED
-#     "examination_year": "2019 - 20",
+#     "marksheet_id":"1122334455",
+#     "examination_date": "2019 - 20",
+#     "total_grade": "A",
 
 #     "hindi": "A",
 #     "english": "B",
@@ -260,11 +261,4 @@ def annotatePDF_format2(data):
 #     "work_education": "C",    # working education
 #     "physical.": "A+",
 #     "arts": "A",
-#     "total_grade": "A",
-
-#     "marksheet_id":"1122334455",
-#     "kendra_code": "390474",
 # }
-
-
-# marksheet_format_2 = ['scholar_no', 'roll_no', 'student_name', 'father_name', 'mother_name', 'dob', 'school_name', 'block', 'district', 'school_dice_code', 'examination_year', 'hindi', 'english', 'science', 'social_science', 'maths', 'sanskrit', 'work_education', 'physical', 'arts', 'total_grade', 'marksheet_id', 'kendra_code']
