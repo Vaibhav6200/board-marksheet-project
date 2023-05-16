@@ -83,18 +83,18 @@ def process_data(data):
 
 
         # Now Create Marksheet of our student
-        mymarksheet = Marksheet(scholar_no =report_data['scholar_no'], roll_no = report_data['roll_no'], student_name=report_data['student_name'], father_name=report_data['father_name'], mother_name = report_data['mother_name'],
-                                 dob = formatted_dob,
-                                 examination_date = formatted_exam_date,
-                                 student_class = report_data['student_class'], school_name = report_data['school_name'], block = report_data['block'], district = report_data['district'], school_dice_code = report_data['school_dice_code'],
-                                 examination_center = report_data['examination_center'], examination_center_code = report_data['examination_center_code'],
-                                 subject_1 = student[14], subject_2 = student[15], subject_3 = student[16], subject_4 = student[17], subject_5 = student[18],
-                                 subject_6 = student[19], subject_7 = student[20], subject_8 = student[21], subject_9 = sub9_marks,
-                                 grade = report_data['overall_grade'], average = report_data['average_marks'], marksheet_id=report_data['marksheet_id'])
+        # mymarksheet = MarksheetFormat_1(scholar_no =report_data['scholar_no'], roll_no = report_data['roll_no'], student_name=report_data['student_name'], father_name=report_data['father_name'], mother_name = report_data['mother_name'],
+        #                          dob = formatted_dob,
+        #                          examination_date = formatted_exam_date,
+        #                          student_class = report_data['student_class'], school_name = report_data['school_name'], block = report_data['block'], district = report_data['district'], school_dice_code = report_data['school_dice_code'],
+        #                          examination_center = report_data['examination_center'], examination_center_code = report_data['examination_center_code'],
+        #                          subject_1 = student[14], subject_2 = student[15], subject_3 = student[16], subject_4 = student[17], subject_5 = student[18],
+        #                          subject_6 = student[19], subject_7 = student[20], subject_8 = student[21], subject_9 = sub9_marks,
+        #                          grade = report_data['overall_grade'], average = report_data['average_marks'], marksheet_id=report_data['marksheet_id'])
 
         # mymarksheet.save()
-        mymarksheet.report_card.name = pdf_file_path
-        mymarksheet.save()
+        # mymarksheet.report_card.name = pdf_file_path
+        # mymarksheet.save()
 
 
 def index(request):
@@ -120,7 +120,7 @@ def index(request):
 
         # return redirect('/')        # this helps in prevention of form resubmission on reloading page
 
-    details = Marksheet.objects.all()
+    details = MarksheetFormat_1.objects.all()
     params = {'details': details}
     return render(request, "index.html", params)
 
@@ -130,7 +130,7 @@ def search(request):
     query = request.GET.get('search')
     params = {}
     if query:
-        results = Marksheet.objects.filter(
+        results = MarksheetFormat_1.objects.filter(
             Q(roll_no=query) |
             Q(school_dice_code=query) |
             Q(scholar_no=query) |
@@ -140,6 +140,6 @@ def search(request):
         )
         params['details'] = results
     else:
-        results = Marksheet.objects.all()
+        results = MarksheetFormat_1.objects.all()
         params['details'] = results
     return render(request, "index.html", params)

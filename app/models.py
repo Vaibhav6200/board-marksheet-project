@@ -50,8 +50,8 @@ class MarksheetFormat_1(models.Model):
     hindi = models.CharField(max_length=5)
     english = models.CharField(max_length=5)
     maths = models.CharField(max_length=5)
-    environmental_studies = models.CharField(max_length=5)
     sanskrit = models.CharField(max_length=5)
+    environmental_studies = models.CharField(max_length=5)
     arts = models.CharField(max_length=5)
     working_education = models.CharField(max_length=5)
     physical = models.CharField(max_length=5)
@@ -61,8 +61,8 @@ class MarksheetFormat_1(models.Model):
 class MarksheetFormat_2(models.Model):
     # marksheet details
     id = models.AutoField(primary_key=True, editable=False)
-    marksheet_id = models.CharField(max_length=20, default="")
     student = models.ForeignKey(StudentDetail, on_delete=models.CASCADE)
+    marksheet_id = models.CharField(max_length=20, default="")
     total_grade = models.CharField(max_length=3)
     examination_date = models.DateField()
     report_card = models.FileField(upload_to='pdf_files/', max_length=255, default=None, null=True)
@@ -70,10 +70,10 @@ class MarksheetFormat_2(models.Model):
     # marks
     hindi = models.CharField(max_length=5)
     english = models.CharField(max_length=5)
-    science = models.CharField(max_length=5)
-    social_science = models.CharField(max_length=5)
     maths = models.CharField(max_length=5)
     sanskrit = models.CharField(max_length=5)
+    science = models.CharField(max_length=5)
+    social_science = models.CharField(max_length=5)
     work_education = models.CharField(max_length=5)
     physical = models.CharField(max_length=5)
     arts = models.CharField(max_length=5)  # this subject is only for 8th class students
