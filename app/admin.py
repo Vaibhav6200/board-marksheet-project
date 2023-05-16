@@ -4,16 +4,16 @@ from .models import *;
 
 
 class CustomSchool(admin.ModelAdmin):
-    list_display = ['id', 'school_name', 'school_dice_code', 'district', 'block', 'kendra_code']
+    list_display = ['id', 'school_name', 'school_dice_code', 'district', 'block', 'examination_center_code']
     list_display_links = ['id', 'school_name']
 
 class CustomStudent(admin.ModelAdmin):
-    list_display = ['id', 'school', 'scholar_no', 'roll_no', 'student_name', 'father_name', 'mother_name', 'dob']
+    list_display = ['id', 'student_name', 'scholar_no', 'roll_no', 'father_name', 'mother_name', 'dob', 'school']
     list_display_links = ["id", "student_name"]
 
 
 class CustomMarksheet1(admin.ModelAdmin):
-    list_display = ["marksheet_id", "student", "total_grade", "examination_date", "hindi", "english", "maths", "environmental_studies", "sanskrit", "arts", "working_education", "physical", "report_card"]
+    list_display = ["marksheet_id", "student", "total_grade", "examination_date", "hindi", "english", "maths", "environmental_studies", "sanskrit", "arts", "work_education", "physical", "report_card"]
     list_display_links = ['student', 'marksheet_id']
 
 

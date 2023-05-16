@@ -81,8 +81,6 @@ def annotatePDF(data):
                     Appearance(content=data['father_name'], font_size=10,  fill=(0,0,0)),
                     )
     # Date of Birth
-    # dob = date(2002, 2, 22)
-    # dob_string = dob.strftime('%d-%m-%Y')
     annotator.add_annotation(
                 'text',
                     Location(x1=370, y1=560, x2=500, y2=575, page=0),
@@ -101,49 +99,49 @@ def annotatePDF(data):
     annotator.add_annotation(
                 'text',
                     Location(x1=430, y1=450, x2=450, y2=470, page=0),
-                    Appearance(content=str(data['subject_1']), font_size=10,  fill=(0,0,0)),
+                    Appearance(content=str(data['hindi']), font_size=10,  fill=(0,0,0)),
                     )
     # English
     annotator.add_annotation(
                 'text',
                     Location(x1=430, y1=405, x2=450, y2=425, page=0),
-                    Appearance(content=str(data['subject_2']), font_size=10,  fill=(0,0,0)),
+                    Appearance(content=str(data['english']), font_size=10,  fill=(0,0,0)),
                     )
     # Maths
     annotator.add_annotation(
                 'text',
                     Location(x1=430, y1=360, x2=450, y2=380, page=0),
-                    Appearance(content=str(data['subject_3']), font_size=10,  fill=(0,0,0)),
+                    Appearance(content=str(data['maths']), font_size=10,  fill=(0,0,0)),
                     )
-    # Environment
+    # Environmental Studies
     annotator.add_annotation(
                 'text',
                     Location(x1=430, y1=310, x2=450, y2=330, page=0),
-                    Appearance(content=str(data['subject_4']), font_size=10,  fill=(0,0,0)),
+                    Appearance(content=str(data['environmental_studies']), font_size=10,  fill=(0,0,0)),
                     )
     # Sanskrit / Urdu
     annotator.add_annotation(
                 'text',
                     Location(x1=430, y1=260, x2=450, y2=280, page=0),
-                    Appearance(content=str(data['subject_5']), font_size=10,  fill=(0,0,0)),
+                    Appearance(content=str(data['sanskrit']), font_size=10,  fill=(0,0,0)),
                     )
-    # creativity
+    # Arts
     annotator.add_annotation(
                 'text',
                     Location(x1=430, y1=180, x2=450, y2=200, page=0),
-                    Appearance(content=str(data['subject_6']), font_size=10,  fill=(0,0,0)),
+                    Appearance(content=str(data['arts']), font_size=10,  fill=(0,0,0)),
                     )
-    # Experience
+    # Work Education (Experience)
     annotator.add_annotation(
                 'text',
                     Location(x1=430, y1=145, x2=450, y2=165, page=0),
-                    Appearance(content=str(data['subject_7']), font_size=10,  fill=(0,0,0)),
+                    Appearance(content=str(data['work_education']), font_size=10,  fill=(0,0,0)),
                     )
-    # Health
+    # Physical Education
     annotator.add_annotation(
                 'text',
                     Location(x1=430, y1=105, x2=450, y2=125, page=0),
-                    Appearance(content=str(data['subject_8']), font_size=10,  fill=(0,0,0)),
+                    Appearance(content=str(data['physical']), font_size=10,  fill=(0,0,0)),
                     )
     # Overall Grade
     annotator.add_annotation(
@@ -157,7 +155,7 @@ def annotatePDF(data):
     annotator.add_annotation(
                 'text',
                     Location(x1=70, y1=60, x2=200, y2=75, page=0),
-                    Appearance(content=str(data['examination_center']), font_size=10,  fill=(0,0,0)),
+                    Appearance(content="Chittorgarh", font_size=10,  fill=(0,0,0)),
                     )
 
     # Current Date
@@ -183,6 +181,4 @@ def annotatePDF(data):
     annotator.write(pdf_file_path, overwrite=True)
 
     return output_file_name
-
-
 

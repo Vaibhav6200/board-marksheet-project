@@ -10,7 +10,7 @@ class SchoolDetail(models.Model):
     block = models.CharField(max_length=255)
 
     # Code Fields
-    kendra_code = models.CharField(max_length=15)
+    examination_center_code = models.CharField(max_length=15)
     school_dice_code = models.CharField(max_length=255)      # dice code
 
     def __str__(self):
@@ -53,7 +53,7 @@ class MarksheetFormat_1(models.Model):
     sanskrit = models.CharField(max_length=5)
     environmental_studies = models.CharField(max_length=5)
     arts = models.CharField(max_length=5)
-    working_education = models.CharField(max_length=5)
+    work_education = models.CharField(max_length=5)
     physical = models.CharField(max_length=5)
 
 
