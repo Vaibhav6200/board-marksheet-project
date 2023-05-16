@@ -377,5 +377,3 @@ def search(request):
         params['details'] = results
     return render(request, "index.html", params)
 
-
-
