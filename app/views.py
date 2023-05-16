@@ -299,7 +299,7 @@ def process_marksheet_3(data):
 
 
         # Generate our Marksheet
-        output_file_name = annotatePDF(report_data)
+        output_file_name = annotatePDF_format3(report_data)
         pdf_file_path = os.path.join('pdf_files', output_file_name)
 
 

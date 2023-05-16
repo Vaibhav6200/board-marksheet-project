@@ -220,7 +220,7 @@ def annotatePDF_format2(data):
 
 
 
-    output_file_name = data['roll_no'] + "_" + data['student_name'] + '.pdf'
+    output_file_name = data['roll_no'] + "_" + data['student_name'] + '_format2.pdf'
 
 
     # Generate our Report card here
@@ -231,34 +231,3 @@ def annotatePDF_format2(data):
 
     return output_file_name
 
-
-
-
-# data = {
-#     "scholar_no": "20bce308",
-#     "roll_no": "1104563",
-#     "student_name": "student_name",
-#     "father_name": "father_name",
-#     "mother_name": "mother_name",
-#     "dob": "22-02-2002",
-#     "student_class": "8",     # NOT USED
-#     "school_name": "St. Paul's Sr. Sec. School",
-#     "block": "A",
-#     "district": "Chittorgarh",
-#     "school_dice_code": "1032",
-#     "examination_center_code": "9001",    # NOT USED
-
-#     "marksheet_id":"1122334455",
-#     "examination_date": "2019 - 20",
-#     "total_grade": "A",
-
-#     "hindi": "A",
-#     "english": "B",
-#     "science": "A",
-#     "social_science": "C",     # Social science
-#     "maths": "A+",
-#     "sanskrit": "B",
-#     "work_education": "C",    # working education
-#     "physical.": "A+",
-#     "arts": "A",
-# }

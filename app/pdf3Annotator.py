@@ -327,7 +327,7 @@ def annotatePDF_format3(data):
                     )
 
 
-    output_file_name = data['roll_no'] + "_" + data['student_name'] + '.pdf'
+    output_file_name = data['roll_no'] + "_" + data['student_name'] + '_format3.pdf'
 
 
     # Generate our Report card here
@@ -338,48 +338,3 @@ def annotatePDF_format3(data):
 
     return output_file_name
 
-
-
-# data = {
-#     "scholar_no": "20bce308",
-#     "roll_no": "1104563",
-#     "student_name": "Student_name",
-#     "father_name": "father_name",
-#     "mother_name": "mother_name",
-#     "dob": "22-02-2002",
-#     "swayam_pathi": "Regular / Private",
-#     "school_name": "St. Paul's Sr. Sec. School",
-#     "district": "Chittorgarh",
-
-#     "marksheet_id":"1122334455",
-#     "result": "PASS / FAIL",
-#     "shreni": "first  / second / third",
-#     "percentage": "85%",
-#     "hindi_20": "20",
-#     "hindi_80": "80",
-#     "hindi_100": "100",
-#     "english_20": "20",
-#     "english_80": "80",
-#     "english_100": "100",
-#     "maths_20": "20",
-#     "maths_80": "80",
-#     "maths_100": "100",
-#     "science_20": "20",
-#     "science_80": "80",
-#     "science_100": "100",
-#     "sanskrit_20": "20",
-#     "sanskrit_80": "80",
-#     "sanskrit_100": "100",
-#     "social_science_20": "20",
-#     "social_science_80": "80",
-#     "social_science_100": "100",
-#     "work_education_20": "20",
-#     "work_education_80": "80",
-#     "work_education_100": "100",
-#     "arts_20": "30",
-#     "arts_80": "80",
-#     "arts_100": "100",
-#     "physical_20": "10",
-#     "physical_80": "80",
-#     "physical_100": "100",
-# }
