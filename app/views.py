@@ -7,6 +7,7 @@ from .pdf2Annotator import annotatePDF_format2
 from .pdf3Annotator import annotatePDF_format3
 import os
 from django.db.models import Q
+from django.core.paginator import Paginator
 
 
 
@@ -351,8 +352,11 @@ def index(request):
 
 
     # MAKE SURE TO UPDATE THIS CONDITION
-    details = Marksheet.objects.all()
-    params = {'details': details}
+    all_marksheets = Marksheet.objects.all()
+    paginator = Paginator(all_marksheets, 10)
+    page_number = request.GET.get("page")
+    data = paginator.get_page(page_number)
+    params = {'details': data}
 
     return render(request, "index.html", params)
 
