@@ -37,7 +37,7 @@
 
                 <div class="container mt-5">
                     <table class="table table-striped">
-                        {% if details_1 or details_2 or details_3 %}
+                        {% if details %}
                             <thead class="text-center">
                                 <tr>
                                     <th>Scholar No</th>
@@ -53,8 +53,7 @@
                             </thead>
                         {% endif %}
                         <tbody class="text-center">
-                            {% for details in combined_details %}
-                                {% for row in details %}
+                            {% for row in details %}
                                 <tr>
                                     <td>{{ row.student.scholar_no }}</td>
                                     <td>{{ row.student.roll_no }}</td>
@@ -62,7 +61,7 @@
                                     <td>{{ row.student.student_class }}</td>
                                     <td>{{ row.examination_date }}</td>
 
-                                    {% if details == details_1 or details == details_2 %}
+                                    {% if row.total_grade %}
                                         <td>{{ row.total_grade }}</td>
                                     {% else %}
                                         <td>{{ row.percentage }}</td>
@@ -71,7 +70,6 @@
                                     <td>{{ row.student.school.school_name }}</td>
                                     <td><a class="btn btn-warning" href="{{row.report_card.url}}" target="_blank">view</a></td>
                                 </tr>
-                                {% endfor %}
                             {% endfor %}
                         </tbody>
                     </table>

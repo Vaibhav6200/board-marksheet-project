@@ -1,16 +1,11 @@
 from datetime import datetime
-from django.http import HttpResponse
 from django.shortcuts import redirect, render
 import pandas as pd
 from .models import *
 from .pdf1Annotator import annotatePDF
 from .pdf2Annotator import annotatePDF_format2
 from .pdf3Annotator import annotatePDF_format3
-
-from django.core.files import File
-from django.conf import settings
 import os
-from django.core.files.storage import default_storage
 from django.db.models import Q
 
 
@@ -99,8 +94,12 @@ def process_marksheet_1(data):
         student_obj = StudentDetail(school=school_obj, scholar_no=scholar_no, roll_no=roll_no, student_name=student_name, father_name=father_name, mother_name=mother_name, dob=dob_formatted, student_class=student_class)
         student_obj.save()
 
-        # Step 3: Create Marksheet Table (Foreign Key on Student)
-        marksheet_obj = MarksheetFormat_1(marksheet_id=marksheet_id, student=student_obj, total_grade=total_grade, examination_date=exam_date_formatted, hindi=hindi, english=english, maths=maths, sanskrit=sanskrit, environmental_studies=environmental_studies, arts=arts, work_education=work_education, physical=physical)
+        # Step 3: Create Student Marks Table
+        marks_obj = StudentMark(student=student_obj, hindi=hindi, english=english, maths=maths, sanskrit=sanskrit, environmental_studies=environmental_studies, work_education=work_education, physical=physical, arts=arts)
+        marks_obj.save()
+
+        # Step 4: Create Marksheet Table (Foreign Key on Student and StudentMark)
+        marksheet_obj = Marksheet(student=student_obj, marks=marks_obj, marksheet_id=marksheet_id, total_grade=total_grade, examination_date=exam_date_formatted)
         marksheet_obj.report_card.name = pdf_file_path
         marksheet_obj.save()
 
@@ -190,8 +189,12 @@ def process_marksheet_2(data):
         student_obj = StudentDetail(school=school_obj, scholar_no=scholar_no, roll_no=roll_no, student_name=student_name, father_name=father_name, mother_name=mother_name, dob=dob_formatted, student_class=student_class)
         student_obj.save()
 
-        # Step 3: Create Marksheet Table (Foreign Key on Student)
-        marksheet_obj = MarksheetFormat_2(marksheet_id=marksheet_id, student=student_obj, total_grade=total_grade, examination_date=exam_date_formatted, hindi=hindi, english=english, maths=maths, sanskrit=sanskrit, science=science, social_science=social_science, arts=arts, work_education=work_education, physical=physical)
+        # Step 3: Create Student Marks Table
+        marks_obj = StudentMark(student=student_obj, hindi=hindi, english=english, maths=maths, sanskrit=sanskrit, science=science, social_science=social_science, work_education=work_education, physical=physical, arts=arts)
+        marks_obj.save()
+
+        # Step 4: Create Marksheet Table (Foreign Key on Student and StudentMark)
+        marksheet_obj = Marksheet(student=student_obj, marks=marks_obj, marksheet_id=marksheet_id, total_grade=total_grade, examination_date=exam_date_formatted)
         marksheet_obj.report_card.name = pdf_file_path
         marksheet_obj.save()
 
@@ -316,8 +319,12 @@ def process_marksheet_3(data):
         student_obj = StudentDetail(school=school_obj, scholar_no=scholar_no, roll_no=roll_no, student_name=student_name, father_name=father_name, mother_name=mother_name, dob=dob_formatted, student_class=student_class)
         student_obj.save()
 
-        # Step 3: Create Marksheet Table (Foreign Key on Student)
-        marksheet_obj = MarksheetFormat_3(marksheet_id=marksheet_id, student=student_obj, result=result, shreni=shreni, percentage=percentage, examination_date=exam_date_formatted, hindi_20 = hindi_20, hindi_80 = hindi_80, hindi_100 = hindi_100, english_20 = english_20, english_80 = english_80, english_100 = english_100, maths_20 = maths_20, maths_80 = maths_80, maths_100 = maths_100, science_20 = science_20, science_80 = science_80, science_100 = science_100, sanskrit_20 = sanskrit_20, sanskrit_80 = sanskrit_80, sanskrit_100 = sanskrit_100, social_science_20 = social_science_20, social_science_80 = social_science_80, social_science_100 = social_science_100, work_education_20 = work_education_20, work_education_80 = work_education_80, work_education_100 = work_education_100, arts_20 = arts_20, arts_80 = arts_80, arts_100 = arts_100, physical_20 = physical_20, physical_80 = physical_80, physical_100 = physical_100)
+        # Step 3: Create Student Marks Table
+        marks_obj = StudentMark(student=student_obj, hindi_20 = hindi_20, hindi_80 = hindi_80, hindi_100 = hindi_100, english_20 = english_20, english_80 = english_80, english_100 = english_100, maths_20 = maths_20, maths_80 = maths_80, maths_100 = maths_100, science_20 = science_20, science_80 = science_80, science_100 = science_100, sanskrit_20 = sanskrit_20, sanskrit_80 = sanskrit_80, sanskrit_100 = sanskrit_100, social_science_20 = social_science_20, social_science_80 = social_science_80, social_science_100 = social_science_100, work_education_20 = work_education_20, work_education_80 = work_education_80, work_education_100 = work_education_100, arts_20 = arts_20, arts_80 = arts_80, arts_100 = arts_100, physical_20 = physical_20, physical_80 = physical_80, physical_100 = physical_100)
+        marks_obj.save()
+
+        # Step 4: Create Marksheet Table (Foreign Key on Student and StudentMark)
+        marksheet_obj = Marksheet(student=student_obj, marks=marks_obj, marksheet_id=marksheet_id, result=result, shreni=shreni, percentage=percentage, examination_date=exam_date_formatted)
         marksheet_obj.report_card.name = pdf_file_path
         marksheet_obj.save()
 
@@ -344,16 +351,8 @@ def index(request):
 
 
     # MAKE SURE TO UPDATE THIS CONDITION
-    details1 = MarksheetFormat_1.objects.all()
-    details2 = MarksheetFormat_2.objects.all()
-    details3 = MarksheetFormat_3.objects.all()
-
-    params = {
-        'details_1': details1,
-        'details_2': details2,
-        'details_3': details3,
-        'combined_details': [details1, details2, details3],
-    }
+    details = Marksheet.objects.all()
+    params = {'details': details}
 
     return render(request, "index.html", params)
 
@@ -363,17 +362,17 @@ def search(request):
     query = request.GET.get('search')
     params = {}
     if query:
-        results = MarksheetFormat_1.objects.filter(
-            Q(roll_no=query) |
-            Q(school_dice_code=query) |
-            Q(scholar_no=query) |
-            Q(student_name__icontains=query) |
-            Q(school_name__icontains=query) |
-            Q(school_name__icontains=query)
+        results = Marksheet.objects.filter(
+            Q(student__scholar_no=query) |
+            Q(student__roll_no=query) |
+            Q(student__school__school_dice_code=query) |
+            Q(student__student_name__icontains=query) |
+            Q(student__school__school_name__icontains=query)
         )
         params['details'] = results
     else:
-        results = MarksheetFormat_1.objects.all()
+        results = Marksheet.objects.all()
         params['details'] = results
+
     return render(request, "index.html", params)
 
