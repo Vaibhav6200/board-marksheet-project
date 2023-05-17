@@ -12,7 +12,7 @@ class CustomStudent(admin.ModelAdmin):
     list_display_links = ["id", "student_name"]
 
 class CustomStudentMark(admin.ModelAdmin):
-    list_display = ['id', 'student']
+    list_display = ['id', 'student', 'hindi', 'english', 'maths', 'sanskrit', 'environmental_studies', 'work_education', 'physical', 'arts', 'science', 'social_science', 'hindi_20', 'hindi_80', 'hindi_100', 'english_20', 'english_80', 'english_100', 'maths_20', 'maths_80', 'maths_100', 'science_20', 'science_80', 'science_100', 'sanskrit_20', 'sanskrit_80', 'sanskrit_100', 'social_science_20', 'social_science_80', 'social_science_100', 'work_education_20', 'work_education_80', 'work_education_100', 'arts_20', 'arts_80', 'arts_100', 'physical_20', 'physical_80', 'physical_100']
     list_display_links = ['id', 'student']
 
 class CustomMarksheet(admin.ModelAdmin):

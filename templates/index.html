@@ -3,7 +3,7 @@
 
 
 {% block content %}
-    <div class="container my-5 p-4 shadow border">
+    <div class="container mt-5 p-4 shadow border">
         <h3>Report Generator</h3>
         <form  method="post" enctype="multipart/form-data">
             {% csrf_token %}
@@ -79,12 +79,21 @@
     </div>
 
 
+    <footer class="bg-dark text-light py-3" style="margin-top: auto;">
+        <div class="container text-center">
+          <p class="m-0">&copy; <span id="year"></span> Electrocom. All rights reserved.</p>
+        </div>
+      </footer>
+
+
 {% endblock %}
 
 
 {% block extra_js %}
 
 <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+
     document.addEventListener('DOMContentLoaded', function() {
         // Get the file input element
         var fileInput = document.getElementById('csv_file');
