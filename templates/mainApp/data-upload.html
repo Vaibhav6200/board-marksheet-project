@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} data-upload {% endblock %}
+{% block content %}
+    {% include 'includes/navbar.html' %}
+    <section style="margin: 50px 0;">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <a href="{% url 'app:individual_upload' %}">
+                        <div class="d-flex flex-column justify-content-between align-items-center" style="width: 100%;height: 100%;">
+                            <img src="{% static 'img/individual-upload.png' %}" style="width: 60%;">
+                            <h1>Individual Data Entry</h1>
+                        </div>
+                    </a>
+                </div>
+                <div class="col">
+                    <a href="{% url 'app:bulk_upload' %}">
+                        <div class="d-flex flex-column justify-content-between align-items-center" style="height: 100%;width: 100%;">
+                            <img src="{% static 'img/folder.png' %}" width="371" height="371" style="width: 60%;">
+                            <h1>Bulk data upload</h1>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+    {% include 'includes/footer.html' %}
+{% endblock %}

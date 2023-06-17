@@ -1,0 +1,176 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} Home {% endblock %}
+{% block content %}
+    {% include "includes/navbar.html" %}
+    <section id="hero">
+        <div class="container">
+            <div class="row">
+                <div class="col text-center d-flex">
+                    <div class="d-flex flex-column justify-content-center align-items-center">
+                        <h1 style="font-family: 'Nunito Sans', sans-serif;font-size: 50px;">Effort less report card generation</h1>
+                        <p style="font-family: 'Nunito Sans', sans-serif;">View Comprehensive Marksheets in minutes</p>
+                        <div class="d-flex justify-content-center align-items-center" style="width: 100%;">
+                            <a href="{% url 'app:upload' %}" class="btn btn-primary" id="hero-button" type="button" style="margin-right: 20px;border-radius: 30px;background: #1E1A56;">Upload Sheet</a>
+                            <div class="dropdown" style="border: 2px solid #1E1A56; border-radius: 30px;">
+                                <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: #1e1a56;">
+                                    View Report
+                                </button>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                    <a class="dropdown-item" href="{% url 'app:filter_school' 5 %}">Class 5 Marksheet</a>
+                                    <a class="dropdown-item" href="{% url 'app:filter_school' 8 %}">Class 8 Marksheet</a>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col"><img src="{% static 'img/image1.png' %}" style="width: 100%;"></div>
+            </div>
+        </div>
+    </section>
+    <section id="features" style="color: #1E1A56;margin-top: 50px;">
+        <div class="container">
+            <div class="row">
+                <div class="col d-flex justify-content-center align-items-center"><img src="{% static 'img/feature.png' %}" style="width: 80%;"></div>
+                <div class="col d-flex flex-column justify-content-center" style="margin-top: 60px;">
+                    <div>
+                        <h1 style="color: #1E1A36;font-size: 50.0px;margin-bottom: 25px;">Features</h1>
+                    </div>
+                    <div class="d-flex flex-column" style="height: 100%;">
+                        <div class="d-flex align-items-center" style="margin-bottom: 20px;"><span><img src="{% static 'img/tick.png' %}" width="40px" style="margin-right: 15px;"></span>
+                            <p style="margin-bottom: 0px;font-size: 25px;">Individual Student Data Entry</p>
+                        </div>
+                        <div class="d-flex align-items-center" style="margin-bottom: 20px;"><span><img src="{% static 'img/tick.png' %}" width="40px" style="margin-right: 15px;"></span>
+                            <p style="margin-bottom: 0px;font-size: 25px;">Bulk Data Entry</p>
+                        </div>
+                        <div class="d-flex align-items-center" style="margin-bottom: 20px;"><span><img src="{% static 'img/tick.png' %}" width="40px" style="margin-right: 15px;"></span>
+                            <p style="margin-bottom: 0px;font-size: 25px;">Bulk Download</p>
+                        </div>
+                        <div class="d-flex align-items-center" style="margin-bottom: 20px;"><span><img src="{% static 'img/tick.png' %}" width="40px" style="margin-right: 15px;"></span>
+                            <p style="margin-bottom: 0px;font-size: 25px;">Comprehensive Student Profiles</p>
+                        </div>
+                        <div class="d-flex align-items-center"><span><img src="{% static 'img/tick.png' %}" width="40px" style="margin-right: 15px;"></span>
+                            <p style="margin-bottom: 0px;font-size: 25px;">Individual Marksheet Download</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="class-cards" style="width: 100%;margin-top: 100px;margin-bottom: 100px;">
+        <div class="container">
+            <div class="d-flex justify-content-center align-items-center">
+                <a href="{% url 'app:filter_school' 5 %}">
+                    <div class="d-flex justify-content-center align-items-center" style="width: 430px;height: 220px;background: #655ADF;border-radius: 30px;margin-right: 50px;">
+                        <div class="d-flex justify-content-center align-items-center"><img src="{% static 'img/char_5.png' %}">
+                            <h1 style="color: rgb(255,255,255);">Class 5 marksheet generate</h1>
+                        </div>
+                    </div>
+                </a>
+                <a href="{% url 'app:filter_school' 8 %}">
+                    <div class="d-flex justify-content-center align-items-center" style="width: 430px;height: 220px;background: #655ADF;border-radius: 30px;">
+                        <img src="{% static 'img/char_8.png' %}">
+                        <h1 style="color: rgb(251,251,251);">Class 8 marksheet generate</h1>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+    <section id="staff">
+        <div class="container">
+            <section class="card-section-imagia" style="background: rgb(255,255,255);">
+                <h1>Our Staff</h1>
+                <h2>Meet our exceptional team of professionals</h2>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-6 col-md-4">
+                            <div class="card-container-imagia">
+                                <div class="card-imagia">
+                                    <div class="front-imagia">
+                                        <div class="cover-imagia" style="background-color: #1E1A56;"></div>
+                                        <div class="user-imagia"><img class="img-circle" alt="" src="{% static 'img/myImage.png' %}"></div>
+                                        <div class="content-imagia">
+                                            <h3 class="name-imagia">Vaibhav Paliwal</h3>
+                                            <p class="subtitle-imagia">Web Developer</p>
+                                            <p class="text-center"><em>Tantum autem cuique tribuendum, primum quantum ipse efficere possis, deinde etiam quantum ille quem diligas atque adiuves.</em></p>
+                                        </div>
+                                        <div class="footer-imagia"><span><i class="fa fa-plus"></i> More info</span></div>
+                                    </div>
+                                    <div class="back-imagia">
+                                        <div class="content-imagia content-back-imagia">
+                                            <div>
+                                                <h3 class="text-center">Lorem Ipsum</h3>
+                                                <p class="text-center">Et hanc quidem praeter oppida multa duae civitates exornant Seleucia opus Seleuci regis, et Claudiopolis quam deduxit coloniam Claudius Caesar. Isaura enim antehac nimium potens, olim subversa ut rebellatrix interneciva aegre vestigia claritudinis pristinae monstrat admodum pauca. </p>
+                                            </div>
+                                        </div>
+                                        <div class="footer-imagia">
+                                            <div class="social-imagia text-center"><a href="#"><i class="fa fa-facebook"></i></a><a href="#"><i class="fa fa-linkedin"></i></a><a href="#"><i class="fa fa-twitter"></i></a></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-md-4">
+                            <div class="card-container-imagia">
+                                <div class="card-imagia">
+                                    <div class="front-imagia">
+                                        <div class="cover-imagia" style="background-color: #1E1A56;"></div>
+                                        <div class="user-imagia"><img class="img-circle" alt="" src="{% static 'img/myImage.png' %}"></div>
+                                        <div class="content-imagia">
+                                            <h3 class="name-imagia">Vaibhav Paliwal</h3>
+                                            <p class="subtitle-imagia">Cloud Developer</p>
+                                            <p class="text-center"><em>Tantum autem cuique tribuendum, primum quantum ipse efficere possis, deinde etiam quantum ille quem diligas atque adiuves. </em></p>
+                                        </div>
+                                        <div class="footer-imagia"><span><i class="fa fa-plus"></i> More info</span></div>
+                                    </div>
+                                    <div class="back-imagia">
+                                        <div class="content-imagia content-back-imagia">
+                                            <div>
+                                                <h3 class="text-center">Lorem Ipsum</h3>
+                                                <p class="text-center">Et hanc quidem praeter oppida multa duae civitates exornant Seleucia opus Seleuci regis, et Claudiopolis quam deduxit coloniam Claudius Caesar. Isaura enim antehac nimium potens, olim subversa ut rebellatrix interneciva aegre vestigia claritudinis pristinae monstrat admodum pauca. </p>
+                                            </div>
+                                        </div>
+                                        <div class="footer-imagia">
+                                            <div class="social-imagia text-center"><a href="#"><i class="fa fa-facebook"></i></a><a href="#"><i class="fa fa-linkedin"></i></a><a href="#"><i class="fa fa-twitter"></i></a></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-md-4">
+                            <div class="card-container-imagia">
+                                <div class="card-imagia">
+                                    <div class="front-imagia">
+                                        <div class="cover-imagia" style="background-color: #1E1A56;"></div>
+                                        <div class="user-imagia"><img class="img-circle" alt="" src="{% static 'img/myImage.png' %}"></div>
+                                        <div class="content-imagia">
+                                            <h3 class="name-imagia">Vaibhav Paliwal</h3>
+                                            <p class="subtitle-imagia">Programmer</p>
+                                            <p class="text-center"><em>Tantum autem cuique tribuendum, primum quantum ipse efficere possis, deinde etiam quantum ille quem diligas atque adiuves. </em></p>
+                                        </div>
+                                        <div class="footer-imagia"><span><i class="fa fa-plus"></i> More info</span></div>
+                                    </div>
+                                    <div class="back-imagia">
+                                        <div class="content-imagia content-back-imagia">
+                                            <div>
+                                                <h3 class="text-center">Lorem Ipsum</h3>
+                                                <p class="text-center">Et hanc quidem praeter oppida multa duae civitates exornant Seleucia opus Seleuci regis, et Claudiopolis quam deduxit coloniam Claudius Caesar. Isaura enim antehac nimium potens, olim subversa ut rebellatrix interneciva aegre vestigia claritudinis pristinae monstrat admodum pauca. </p>
+                                            </div>
+                                        </div>
+                                        <div class="footer-imagia">
+                                            <div class="social-imagia text-center"><a href="#"><i class="fa fa-facebook"></i></a><a href="#"><i class="fa fa-linkedin"></i></a><a href="#"><i class="fa fa-twitter"></i></a></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </section>
+
+    {% include "includes/footer.html" %}
+
+{% endblock %}

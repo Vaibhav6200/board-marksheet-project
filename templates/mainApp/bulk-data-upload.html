@@ -1,0 +1,97 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} Bulk Upload {% endblock %}
+{% block extra_css %}
+  <style>
+    #submit-button, #dropdown-button{
+      background: #1E1A56;
+      border-radius: 4px;
+      font-size: 20px;
+      color: white;
+    }
+
+    #print_format{
+      border: 2px solid #1E1A56;
+      padding: 10px;
+      border-radius: 4px;
+    }
+  </style>
+{% endblock %}
+
+{% block content %}
+  {% include 'includes/navbar.html' %}
+
+  <section style="margin: 50px 0;">
+    <div class="container">
+      <div>
+        <div class="d-flex justify-content-between align-items-center">
+            <h1 style="margin-bottom: 20px;color: #1E1A56;margin-left: 60px;">Bulk Data upload</h1>
+            <span style="margin-right: 60px;">Max Size: 20MB</span>
+        </div>
+
+        <form action="{% url 'app:bulk_upload' %}" method="post" enctype="multipart/form-data">
+          {% csrf_token %}
+          <div class="dashed_upload" style="position: relative;">
+            <div class="wrapper">
+              <div class="drop">
+                <div class="cont">
+                  <i class="fa fa-cloud-upload"></i>
+                </div>
+                <input id="csv_file" multiple name="csv_file" type="file" accept="text/csv" />
+              </div>
+            </div>
+          </div>
+
+          <div class="d-flex flex-column align-items-center justify-content-center mt-5">
+            <span class="text-success" id="csv_file_name"></span>
+            <div class="d-flex justify-content-center align-items-center mt-3">
+
+              <select class="mr-3" name="print_format" id="print_format">
+                <option disabled selected>select printing format</option>
+                <option value="format_1">Class 5 Marksheet</option>
+                <option value="format_2">Class 8 (2014-19)</option>
+                <option value="format_3">Class 8 Old (&lt;2014)</option>
+              </select>
+              <button class="btn btn-primary" type="submit" id="submit-button"> Upload <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" style="width: 24px;height: 24px;margin-left: 10px;"> <path d="M11 14.9861C11 15.5384 11.4477 15.9861 12 15.9861C12.5523 15.9861 13 15.5384 13 14.9861V7.82831L16.2428 11.0711L17.657 9.65685L12.0001 4L6.34326 9.65685L7.75748 11.0711L11 7.82854V14.9861Z" fill="currentColor"></path> <path d="M4 14H6V18H18V14H20V18C20 19.1046 19.1046 20 18 20H6C4.89543 20 4 19.1046 4 18V14Z" fill="currentColor"></path></svg> </button>
+            </div>
+          </div>
+        </form>
+
+      </div>
+    </div>
+  </section>
+
+  <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+  {% include 'includes/footer.html' %}
+
+  <script>
+    // Validation of file type and file size for csv File
+    let csv_file = document.getElementById('csv_file')
+    let submit_button = document.getElementById('submit-button')    // submit-button will be disabled till we upload our source code
+    let csv_file_name = document.getElementById("csv_file_name")    // this is the green text which is displayed when we select a file
+    submit_button.disabled = true
+
+    csv_file.addEventListener('change', function(){
+      let mb = 1048576
+      let file = csv_file.files[0]
+      console.log(file)
+      console.log(file.size)
+      if(file.size > 20*mb){
+          alert("please keep file size under 20MB. Current File Size " + Math.ceil(file.size/mb) + "MB")
+          csv_file.value = "";
+          csv_file_name.innerText = "";
+          submit_button.disabled = true;
+      }
+      else if(file.type != "text/csv"){
+        alert('File type not Supported')
+        csv_file.value = "";
+        csv_file_name.innerText = "";
+        submit_button.disabled = true;
+      }
+      else{
+        csv_file_name.innerText = file.name;
+        submit_button.disabled = false;
+      }
+    })
+  </script>
+{% endblock %}

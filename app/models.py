@@ -13,6 +13,8 @@ class SchoolDetail(models.Model):
     examination_center_code = models.CharField(max_length=15)
     school_dice_code = models.CharField(max_length=255)      # dice code
 
+    object = models.Manager
+
     def __str__(self):
         return self.school_name
 
@@ -30,6 +32,8 @@ class StudentDetail(models.Model):
     # extra field
     student_class = models.CharField(max_length=10)
     swayam_pathi = models.CharField(max_length=10, default="")
+
+    object = models.Manager
 
     def __str__(self):
         return self.student_name
@@ -75,7 +79,7 @@ class StudentMark(models.Model):
     physical_20 = models.CharField(max_length=3, default="")
     physical_80 = models.CharField(max_length=3, default="")
     physical_100 = models.CharField(max_length=3, default="")
-
+    object = models.Manager
 
 
 class Marksheet(models.Model):
@@ -89,3 +93,5 @@ class Marksheet(models.Model):
     shreni = models.CharField(max_length=10, default="")
     percentage = models.CharField(max_length=10, default="")
     report_card = models.FileField(upload_to='pdf_files/', max_length=255, default=None, null=True)
+
+    object = models.Manager

@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %} Login {% endblock %}
+
+
+
+{% block content %}
+    <section id="login-section" style="margin: 50px 0;">
+        <div class="container">
+            <div class="row">
+                <div class="col"><img src="{% static 'img/Data_security_05.jpg' %}" width="100%"></div>
+                <div class="col-6 d-flex flex-column justify-content-center">
+                    <p class="d-flex justify-content-center" style="font-size: 60px;color: #1E1A56;">Login</p>
+                    <div>
+                        <input type="email" id="email" name="email" placeholder="Email Address">
+                        <input type="password" id="password" name="password" placeholder="Password">
+                    </div>
+                    <div class="d-flex align-items-center">
+                        <input type="checkbox" style="width: 20px;height: 20px;margin-right: 20px;">
+                        <p style="color: #1E1A56;font-size: 20px;margin-bottom: 0px;">Agree to Terms &amp; Condition</p>
+                    </div>
+                    <div class="d-flex" style="margin-top: 20px;">
+                        <button class="btn btn-primary" id="google-button" type="button">Google</button>
+                        <button class="btn btn-primary" id="submit-button" type="submit">Submit</button></div>
+                    <div class="d-flex align-items-center" style="margin-top: 20px;">
+                        <p style="color: #1E1A56;font-size: 20px;margin-bottom: 0px;">Don't have an account?&nbsp;</p><a href="{% url 'app:register' %}" style="font-size: 20px;"><span style="color: rgb(30, 26, 86);">Sign-up</span></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

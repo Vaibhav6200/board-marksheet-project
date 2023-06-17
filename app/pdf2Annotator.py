@@ -1,12 +1,24 @@
 from pdf_annotate import PdfAnnotator, Appearance, Location
-import datetime
 from django.conf import settings
 import os
+from num2words import num2words
+from datetime import datetime
 
 
 
 hex_color = "#6471a6"
 fill_color = (0.392, 0.443, 0.651)
+
+
+def convert_date_in_words(date_string):
+    date_parts = date_string.split("-")
+    day = num2words(int(date_parts[0]))
+    date_object = datetime.strptime(date_string, "%d-%m-%Y")
+    month = date_object.strftime("%B").lower()
+    year = num2words(int(date_parts[2]))
+    date = f"{day} {month} {year}"
+    return date
+
 
 def annotatePDF_format2(data):
 
@@ -92,14 +104,14 @@ def annotatePDF_format2(data):
     # mother_name
     annotator.add_annotation(
                 'text',
-                    Location(x1=170, y1=485, x2=300, y2=497, page=0),
+                    Location(x1=140, y1=485, x2=300, y2=497, page=0),
                     Appearance(content=data['mother_name'], font_size=10,  fill=fill_color),
                     )
 
     # father_name
     annotator.add_annotation(
                 'text',
-                    Location(x1=370, y1=485, x2=520, y2=497, page=0),
+                    Location(x1=330, y1=485, x2=520, y2=497, page=0),
                     Appearance(content=data['father_name'], font_size=10,  fill=fill_color),
                     )
 
@@ -111,11 +123,13 @@ def annotatePDF_format2(data):
                     )
 
     # dob in words
-    dob_in_words="twenty two february two thousand two"
+
+    date_string = data['dob']
+    date_in_words = convert_date_in_words(date_string)
     annotator.add_annotation(
                 'text',
-                    Location(x1=320, y1=460, x2=520, y2=472, page=0),
-                    Appearance(content=dob_in_words, font_size=10,  fill=fill_color),
+                    Location(x1=290, y1=460, x2=520, y2=472, page=0),
+                    Appearance(content=date_in_words, font_size=10,  fill=fill_color),
                     )
 
     # examination_date
@@ -208,7 +222,7 @@ def annotatePDF_format2(data):
 
     # Examination Date
     # Get current date
-    now = datetime.datetime.now()
+    now = datetime.now()
     formatted_date = now.strftime("%d-%b-%Y").lower()
 
     annotator.add_annotation(

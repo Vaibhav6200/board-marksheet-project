@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} Contact {% endblock %}
+{% block content %}
+    {% include 'includes/navbar.html' %}
+    <section style="margin: 50px 0;">
+        <div class="container">
+            <div class="row">
+                <div class="col"><img src="{% static 'img/contact.png' %}" width="100%"></div>
+                <div class="col-6 d-flex flex-column justify-content-center">
+                    <p style="font-size: 50px;color: #1e1a56;">CONTACT US&nbsp;</p>
+                    <div>
+                        <div class="row" style="margin-bottom: 10px;">
+                            <div class="col"><input type="text" style="width: 100%;border-radius: 5px;border: 2px solid rgba(30,26,86,0.5);"></div>
+                            <div class="col"><input type="text" style="width: 100%;border-radius: 5px;border: 2px solid rgba(30,26,86,0.5);"></div>
+                        </div>
+                        <div class="row" style="margin-bottom: 10px;">
+                            <div class="col"><input type="text" style="width: 100%;border-radius: 5px;border: 2px solid rgba(30,26,86,0.5);"></div>
+                            <div class="col"><input type="text" style="width: 100%;border-radius: 5px;border: 2px solid rgba(30,26,86,0.5);"></div>
+                        </div>
+                        <div class="row">
+                            <div class="col"><textarea style="border-radius: 5px;width: 100%;border: 2px solid rgba(30,26,86,0.5);" rows="5"></textarea></div>
+                        </div>
+                        <div><button class="btn btn-primary" type="button" style="font-size: 15px;background: #1e1a56;border-radius: 5px;">send message</button></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    {% include 'includes/footer.html' %}
+{% endblock %}

@@ -1,0 +1,243 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} Individual Data Entry {% endblock %}
+
+{% block extra_css %}
+    <style>
+        .input_style{
+            width: 100%;
+            border-color: #1e1a56;
+            padding: 5px;
+            border-radius: 4px;
+        }
+        .btn_style{
+            font-size: 20px;
+            background: #1e1a56;
+            width: 200px;
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+    {% include 'includes/navbar.html' %}
+
+    <section style="margin: 50px 0;">
+        <div class="container" style="width: 65%;margin: 0px auto;">
+            <div class="text-start d-flex justify-content-center" id="data-entry-header" style="margin-bottom: 30px;">
+                <h1 class="d-flex" style="color: #1e1a56;">Individual student data entry<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="1em" height="1em" fill="currentColor" style="margin-left: 25px;width: 35px;height: 35px;"> <path d="M45.63 79.75L52 81.25v58.5C45 143.9 40 151.3 40 160c0 8.375 4.625 15.38 11.12 19.75L35.5 242C33.75 248.9 37.63 256 43.13 256h41.75c5.5 0 9.375-7.125 7.625-13.1L76.88 179.8C83.38 175.4 88 168.4 88 160c0-8.75-5-16.12-12-20.25V87.13L128 99.63l.001 60.37c0 70.75 57.25 128 128 128s127.1-57.25 127.1-128L384 99.62l82.25-19.87c18.25-4.375 18.25-27 0-31.5l-190.4-46c-13-3-26.62-3-39.63 0l-190.6 46C27.5 52.63 27.5 75.38 45.63 79.75zM359.2 312.8l-103.2 103.2l-103.2-103.2c-69.93 22.3-120.8 87.2-120.8 164.5C32 496.5 47.53 512 66.67 512h378.7C464.5 512 480 496.5 480 477.3C480 400 429.1 335.1 359.2 312.8z"></path></svg>&nbsp;</h1>
+            </div>
+            <form action="{% url 'app:individual_upload' %}" method="post">
+                {% csrf_token %}
+                <div id="student-data" style="padding: 15px;margin-bottom: 50px;border-width: 3.4px;border-color: #1E1A56;">
+                    <h4 style="color: #1e1a56;margin-bottom: 20px;">Enter Student data</h4>
+                    <div class="row" style="margin-bottom: 10px;">
+                        <div class="col">
+                            <label class="" for="">Scholar Number</label>
+                            <input type="text" name="scholar_no" id="scholar_no" class="input_style" required>
+                        </div>
+                        <div class="col">
+                            <label class="" for="">Roll No</label>
+                            <input type="text" name="roll_no" id="roll_no" class="input_style" required>
+                        </div>
+                    </div>
+                    <div class="row" style="margin-bottom: 10px;">
+                        <div class="col">
+                            <label class="" for="">Student Name</label>
+                            <input type="text" name="student_name" id="student_name" class="input_style" required>
+                        </div>
+                        <div class="col">
+                            <label class="" for="">Date Of Birth</label>
+                            <input type="date" name="dob" id="dob" class="input_style" required>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <label class="" for="">Father Name</label>
+                            <input type="text" name="father_name" id="father_name" class="input_style" required>
+                        </div>
+                        <div class="col">
+                            <label class="" for="">Mother Name</label>
+                            <input type="text"name="mother_name" id="mother_name" class="input_style" required>
+                        </div>
+                    </div>
+                </div>
+                <div id="school-data" style="padding: 15px;margin-bottom: 50px;border: 3.4px none #1E1A56;">
+                    <h4 style="color: #1e1a56;margin-bottom: 20px;">enter student school data</h4>
+                    <div class="row" style="margin-bottom: 10px;">
+                        <div class="col">
+                            <label class="" for="">Student Class</label>
+                            <select onchange="classSelected()" name="student_class" id="student_class" class="input_style" required>
+                                <option selected disabled>Select Your Class</option>
+                                <option value="5">Class 5</option>
+                                <option value="8">Class 8</option>
+                            </select>
+                        </div>
+                        <div class="col">
+                            <label class="" for="">School Name</label>
+                            <input type="text" name="school_name" id="school_name" class="input_style" required>
+                        </div>
+                    </div>
+                    <div class="row" style="margin-bottom: 10px;">
+                        <div class="col">
+                            <label class="" for="">Block</label>
+                            <input type="text" name="block" id="block" class="input_style" required>
+                        </div>
+                        <div class="col">
+                            <label class="" for="">District</label>
+                            <input type="text" name="district" id="district" class="input_style" required>
+                        </div>
+                    </div>
+                    <div class="row" style="margin-bottom: 10px;">
+                        <div class="col">
+                            <label class="" for="">School Dice Code</label>
+                            <input type="text" name="school_dice_code" id="school_dice_code" class="input_style" required>
+                        </div>
+                        <div class="col">
+                            <label class="" for="">Examination Center Code</label>
+                            <input type="text" name="examination_center_code" id="examination_center_code" class="input_style" required>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <label class="" for="">Examination Date</label>
+                            <input type="date" onchange="examDateSelected()" name="examination_date" id="examination_date" class="input_style" placeholder="examination date" required>
+                        </div>
+                        <div class="col" id="swayam_pathi_block" style="display: none;">
+                            <label class="" for="">Swayam Pathi</label>
+                            <input type="text" name="swayam_pathi" id="swayam_pathi" class="input_style">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FORMAT 1 and 2 -->
+                <div id="format_1_2" style="padding: 15px;margin-bottom: 50px;border: 3.4px none #1E1A56;">
+                    <h4 style="color: #1e1a56;margin-bottom: 20px;">enter student Grades</h4>
+                    <div class="row" style="margin-bottom: 10px;">
+                        <div class="col"><input type="text" name="marksheet_id" id="marksheet_id" class="input_style" placeholder="Marksheet ID"></div>
+                        <div class="col"><input type="text" name="total_grade" id="total_grade" class="input_style" placeholder="Overall Grade (A+)"></div>
+                        <div class="col"><input type="text" name="hindi" id="hindi" class="input_style" placeholder="Hindi (A)"></div>
+                    </div>
+                    <div class="row" style="margin-bottom: 10px;">
+                        <div class="col"><input type="text" name="english" id="english" class="input_style" placeholder="English (B)"></div>
+                        <div class="col"><input type="text" name="maths" id="maths" class="input_style" placeholder="Maths (A+)"></div>
+                        <div class="col"><input type="text" name="sanskrit" id="sanskrit" class="input_style" placeholder="Sanskrit (C)"></div>
+                    </div>
+                    <div class="row" style="margin-bottom: 10px;">
+                        <div class="col"><input type="text" name="work_education" id="work_education" class="input_style" placeholder="Work Education (A)"></div>
+                        <div class="col"><input type="text" name="physical" id="physical" class="input_style" placeholder="Physical Education (A)"></div>
+                        <div class="col"><input type="text" name="arts" id="arts" class="input_style" placeholder="Arts (A)"></div>
+                    </div>
+                    <div class="row" style="margin-bottom: 10px;">
+                        <div class="col"><input type="text" name="environmental_studies" id="environmental_studies" class="input_style" placeholder="Environmental Studies (A)"></div>
+                        <div class="col-4"><input type="text" name="social_science" id="social_science" class="input_style" placeholder="Social Science (A)"></div>
+                        <div class="col-4"><input type="text" name="science" id="science" class="input_style" placeholder="Science (A)"></div>
+                    </div>
+                </div>
+
+                <!-- Format 3 -->
+                <div id="format_3" style="padding: 15px;margin-bottom: 50px;border: 3.4px none #1E1A56; display: none;">
+                    <h4 style="color: #1e1a56;margin-bottom: 20px;">enter student marks</h4>
+                    <div class="row" style="margin-bottom: 10px;">
+                        <div class="col"><input type="text" name="result" id="result" class="input_style" placeholder="PASS / FAIL"></div>
+                        <div class="col"><input type="text" name="shreni" id="shreni" class="input_style" placeholder="Shreni"></div>
+                        <div class="col"><input type="text" name="percentage" id="percentage" class="input_style" placeholder="Percentage (94)"></div>
+                    </div>
+                    <div class="row" style="margin-bottom: 10px;">
+                        <div class="col-4"><input type="text" name="old_marksheet_id" id="old_marksheet_id" class="input_style" placeholder="Marksheet ID"></div>
+                    </div>
+                    <div class="row" style="margin-bottom: 10px;">
+                        <div class="col"><input type="text" name="hindi_20" id="hindi_20" class="input_style" placeholder="Hindi 20"></div>
+                        <div class="col"><input type="text" name="hindi_80" id="hindi_80" class="input_style" placeholder="Hindi 80"></div>
+                        <div class="col"><input type="text" name="hindi_100" id="hindi_100" class="input_style" placeholder="Hindi 100"></div>
+                    </div>
+                    <div class="row" style="margin-bottom: 10px;">
+                        <div class="col"><input type="text" name="english_20" id="english_20" class="input_style" placeholder="English 20"></div>
+                        <div class="col"><input type="text" name="english_80" id="english_80" class="input_style" placeholder="English 80"></div>
+                        <div class="col"><input type="text" name="english_100" id="english_100" class="input_style" placeholder="English 100"></div>
+                    </div>
+                    <div class="row" style="margin-bottom: 10px;">
+                        <div class="col"><input type="text" name="maths_20" id="maths_20" class="input_style" placeholder="Maths 20"></div>
+                        <div class="col"><input type="text" name="maths_80" id="maths_80" class="input_style" placeholder="Maths 80"></div>
+                        <div class="col"><input type="text" name="maths_100" id="maths_100" class="input_style" placeholder="Maths 100"></div>
+                    </div>
+                    <div class="row" style="margin-bottom: 10px;">
+                        <div class="col"><input type="text" name="science_20" id="science_20" class="input_style" placeholder="Science 20"></div>
+                        <div class="col"><input type="text" name="science_80" id="science_80" class="input_style" placeholder="Science 80"></div>
+                        <div class="col"><input type="text" name="science_100" id="science_100" class="input_style" placeholder="Science 100"></div>
+                    </div>
+                    <div class="row" style="margin-bottom: 10px;">
+                        <div class="col"><input type="text" name="sanskrit_20" id="sanskrit_20" class="input_style" placeholder="Sanskrit 20"></div>
+                        <div class="col"><input type="text" name="sanskrit_80" id="sanskrit_80" class="input_style" placeholder="Sanskrit 80"></div>
+                        <div class="col"><input type="text" name="sanskrit_100" id="sanskrit_100" class="input_style" placeholder="Sanskrit 100"></div>
+                    </div>
+                    <div class="row" style="margin-bottom: 10px;">
+                        <div class="col"><input type="text" name="social_science_20" id="social_science_20" class="input_style" placeholder="Social Science 20"></div>
+                        <div class="col"><input type="text" name="social_science_80" id="social_science_80" class="input_style" placeholder="Social Science 80"></div>
+                        <div class="col"><input type="text" name="social_science_100" id="social_science_100" class="input_style" placeholder="Social Science 100"></div>
+                    </div>
+                    <div class="row" style="margin-bottom: 10px;">
+                        <div class="col"><input type="text" name="work_education_20" id="work_education_20" class="input_style" placeholder="Work Education 20"></div>
+                        <div class="col"><input type="text" name="work_education_80" id="work_education_80" class="input_style" placeholder="Work Education 80"></div>
+                        <div class="col"><input type="text" name="work_education_100" id="work_education_100" class="input_style" placeholder="Work Education 100"></div>
+                    </div>
+                    <div class="row" style="margin-bottom: 10px;">
+                        <div class="col"><input type="text" name="arts_20" id="arts_20" class="input_style" placeholder="Arts 20"></div>
+                        <div class="col"><input type="text" name="arts_80" id="arts_80" class="input_style" placeholder="Arts 80"></div>
+                        <div class="col"><input type="text" name="arts_100" id="arts_100" class="input_style" placeholder="Arts 100"></div>
+                    </div>
+                    <div class="row" style="margin-bottom: 10px;">
+                        <div class="col"><input type="text" name="physical_20" id="physical_20" class="input_style" placeholder="Physical Education 20"></div>
+                        <div class="col"><input type="text" name="physical_80" id="physical_80" class="input_style" placeholder="Physical Education 80"></div>
+                        <div class="col"><input type="text" name="physical_100" id="physical_100" class="input_style" placeholder="Physical Education 100"></div>
+                    </div>
+                </div>
+                <input type="hidden" name="marksheet_format" id="marksheet_format">
+                <button class="btn btn-primary btn_style" type="submit">submit</button>
+            </form>
+        </div>
+    </section>
+    {% include 'includes/footer.html' %}
+
+
+    <script>
+        function classSelected(){
+            let student_class = document.getElementById("student_class").value
+            if(student_class == '5'){
+                document.getElementById("social_science").style.display = "none"
+                document.getElementById("science").style.display = "none"
+                document.getElementById('environmental_studies').style.display = "block"
+
+                document.getElementById('marksheet_format').value = "1"
+            }
+            else{
+                document.getElementById('environmental_studies').style.display = "none"
+                document.getElementById("social_science").style.display = "block"
+                document.getElementById("science").style.display = "block"
+
+                document.getElementById('marksheet_format').value = "2"
+            }
+        }
+        function examDateSelected(){
+            let selected_class = document.getElementById('student_class').value
+            if(selected_class == '8'){
+                examination_year = document.getElementById("examination_date").value.split('-')[0]
+                if(examination_year >= "2014" && examination_year <="2019"){
+                    document.getElementById("format_3").style.display = "none"
+                    document.getElementById("format_1_2").style.display = "block"
+                    document.getElementById('marksheet_format').value = "2"
+
+                    document.getElementById("swayam_pathi_block").style.display = "none"
+                }
+                else if(examination_year < "2014"){
+                    document.getElementById("format_3").style.display = "block"
+                    document.getElementById("format_1_2").style.display = "none"
+                    document.getElementById('marksheet_format').value = "3"
+
+                    document.getElementById("swayam_pathi_block").style.display = "block"
+                }
+            }
+        }
+
+    </script>
+
+{% endblock %}

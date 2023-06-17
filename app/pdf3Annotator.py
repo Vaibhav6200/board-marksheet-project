@@ -1,10 +1,20 @@
 from pdf_annotate import PdfAnnotator, Appearance, Location
-import datetime
 from django.conf import settings
 import os
+from datetime import datetime
+from num2words import num2words
 
 
 fill_color = (0.514, 0.51, 0.635)
+
+def convert_date_in_words(date_string):
+    date_parts = date_string.split("-")
+    day = num2words(int(date_parts[0]))
+    date_object = datetime.strptime(date_string, "%d-%m-%Y")
+    month = date_object.strftime("%B").lower()
+    year = num2words(int(date_parts[2]))
+    date = f"{day} {month} {year}"
+    return date
 
 
 def annotatePDF_format3(data):
@@ -77,11 +87,12 @@ def annotatePDF_format3(data):
                     )
 
     # Date of Birth in words
-    dob_in_words="twenty two february two thousand two"
+    date_string = data['dob']
+    date_in_words = convert_date_in_words(date_string)
     annotator.add_annotation(
                 'text',
                     Location(x1=130, y1=505, x2=500, y2=517, page=0),
-                    Appearance(content=dob_in_words, font_size=10,  fill=fill_color),
+                    Appearance(content=date_in_words, font_size=10,  fill=fill_color),
                     )
 
     # School Name
@@ -317,7 +328,7 @@ def annotatePDF_format3(data):
     # TODAY DATE (print current date)
 
     # Get current date
-    now = datetime.datetime.now()
+    now = datetime.now()
     formatted_date = now.strftime("%d-%b-%Y").lower()
 
     annotator.add_annotation(

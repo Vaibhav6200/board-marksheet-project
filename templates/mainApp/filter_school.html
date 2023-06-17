@@ -1,0 +1,114 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %} Filter Report {% endblock %}
+{% block extra_css %}
+    <style>
+        #school_card, #student_card{
+            cursor: pointer;
+            width: 40%;
+            background: #655ADF;
+            border-radius: 30px;
+        }
+        #district, #block{
+            width: 30%;
+            border: 2px solid #1E1A56;
+        }
+        #filter-outline{
+            border-style: dashed;
+            border-color: #1E1A56;
+            border-radius: 15px;
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+    {% include 'includes/navbar.html' %}
+    <section id="filter-cards" class="my-5 w-100">
+        <div class="container">
+            <div class="d-flex justify-content-center align-items-center">
+                <a href="{% url 'app:filter_school' class_id %}" id="school_card" class="d-flex justify-content-center align-items-center py-3 px-4 mr-5">
+                    <div class="d-flex justify-content-center align-items-center">
+                        <img class="w-25" src="{% static 'img/school-filter.png' %}">
+                        <h3 class="mb-0 text-light">Filter school dice code</h3>
+                    </div>
+                </a>
+                <a href="{% url 'app:filter_student' class_id %}" id="student_card" class="d-flex justify-content-center align-items-center py-3 px-4">
+                    <img class="mx-3 " style="width: 90px;" src="{% static 'img/student-filter.png' %}">
+                    <h3 class="mb-0 text-light">filter student</h3>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section id="Filter-school">
+        <div class="container">
+            <form action="{% url 'app:filter_school' class_id %}" method="post">
+                {% csrf_token %}
+                <input type="hidden" id="filter_type" name="filter_type">
+                <div class="d-flex justify-content-between align-items-center" style="margin-bottom: 20px;">
+                    <span style="color: #1E1A56;font-size: 30px;">Filter School</span>
+                    <button class="btn btn-primary d-flex flex-column justify-content-between align-items-center" id="go-button" type="submit" style="border-radius: 30px;background: #1E1A56;">Go&nbsp;</button>
+                </div>
+                <div class="d-flex justify-content-around p-4" id="filter-outline">
+                    <select class="px-3 py-2" name="district" id="district">
+                        <option disabled selected>select district</option>
+                        {% for district in districts %}
+                            <option value="{{ district }}">{{ district }}</option>
+                        {% endfor %}
+                    </select>
+                    <select class="px-3 py-2" name="block" id="block">
+                        <option  disabled selected>select block</option>
+                        {% for block in blocks %}
+                            <option value="{{ block }}">{{ block }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </form>
+
+            <div class="input-group mt-5">
+                <input class="form-control" id="search-input" type="text" style="border-radius: 4px; border: 2px solid #1E1A56;" placeholder="search ...">
+                <button class="btn btn-primary" type="button" style="background: #1E1A56; border-radius: 4px;font-size: 18px;">search</button>
+            </div>
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Sr. No</th>
+                            <th>Name</th>
+                            <th>district</th>
+                            <th>block</th>
+                            <th>exam center code</th>
+                            <th>dice code</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for school in available_schools %}
+                            <tr>
+                                <td>{{ forloop.counter }}</td>
+                                <td>{{ school.school_name }}</td>
+                                <td>{{ school.district }}</td>
+                                <td>{{ school.block }}</td>
+                                <td>{{ school.examination_center_code }}</td>
+                                <td>{{ school.school_dice_code }}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            <nav class="d-flex justify-content-center">
+                <ul class="pagination">
+                    <li class="page-item"><a class="page-link" aria-label="Previous" href="#"><span aria-hidden="true">«</span></a></li>
+                    <li class="page-item"><a class="page-link" href="#">1</a></li>
+                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                    <li class="page-item"><a class="page-link" href="#">4</a></li>
+                    <li class="page-item"><a class="page-link" href="#">5</a></li>
+                    <li class="page-item"><a class="page-link" aria-label="Next" href="#"><span aria-hidden="true">»</span></a></li>
+                </ul>
+            </nav>
+        </div>
+    </section>
+
+
+    {% include 'includes/footer.html' %}
+{% endblock %}

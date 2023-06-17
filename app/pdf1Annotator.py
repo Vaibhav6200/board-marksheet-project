@@ -1,13 +1,25 @@
 from pdf_annotate import PdfAnnotator, Appearance, Location
-from datetime import datetime, date
 from django.conf import settings
 import os
-
+from datetime import datetime
+from num2words import num2words
 
 
 
 hex_color = "#696083"
 fill_color = (0.412, 0.376, 0.514)
+
+
+def convert_date_in_words(date_string):
+    date_parts = date_string.split("-")
+    day = num2words(int(date_parts[0]))
+    date_object = datetime.strptime(date_string, "%d-%m-%Y")
+    month = date_object.strftime("%B").lower()
+    year = num2words(int(date_parts[2]))
+    date = f"{day} {month} {year}"
+    return date
+
+
 
 def annotatePDF(data):
     base_dir = settings.BASE_DIR
@@ -92,12 +104,14 @@ def annotatePDF(data):
                     Appearance(content=data['dob'], font_size=10,  fill=fill_color),
                     )
     # Date of Birth (in words)
-    # dob_string_words = "twenty two february two thousand two"
-    # annotator.add_annotation(
-    #             'text',
-    #                 Location(x1=80, y1=533, x2=500, y2=548, page=0),
-    #                 Appearance(content=dob_string_words, font_size=10,  fill=fill_color),
-    #                 )
+
+    date_string = data['dob']
+    date_in_words = convert_date_in_words(date_string)
+    annotator.add_annotation(
+                'text',
+                    Location(x1=80, y1=533, x2=500, y2=548, page=0),
+                    Appearance(content=date_in_words, font_size=10,  fill=fill_color),
+                    )
 
     # ***** Grades Annotations *****
     # Hindi

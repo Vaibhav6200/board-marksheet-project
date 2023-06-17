@@ -49,8 +49,42 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'app',
+    'app.apps.AppConfig',
+
+    # 'django.contrib.sites',
+    # 'allauth',
+    # 'allauth.account',
+    # 'allauth.socialaccount',
+    # 'allauth.socialaccount.providers.google',
+
+    # 'crispy_forms',
+    # 'crispy_bootstrap4',
 ]
+
+# CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap4"
+# CRISPY_TEMPLATE_PACK = 'Bootstrap4'
+# SOCIALACCOUNT_LOGIN_ON_GET=True
+
+# # all-auth settings
+# SITE_ID = 1
+
+# AUTHENTICATION_BACKENDS = [
+#     'django.contrib.auth.backends.ModelBackend',
+#     'allauth.account.auth_backends.AuthenticationBackend',
+# ]
+# ACCOUNT_AUTHENTICATION_METHOD = "email"
+# ACCOUNT_EMAIL_REQUIRED  = True
+# ACCOUNT_USERNAME_REQUIRED  = False
+# ACCOUNT_EMAIL_VERIFICATION = "mandatory"
+# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'        # for development
+# LOGIN_REDIRECT_URL = "/"
+
+
+# if DEBUG == False:
+#     EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'    # for production
+    # additional Informations...
+
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -135,3 +169,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+
+

@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %} About {% endblock %}
+
+{% block content %}
+    {% include 'includes/navbar.html' %}
+    <section style="margin: 50px 0;">
+        <div class="container">
+            <div class="row">
+                <div class="col"><img src="{% static 'img/4380.jpg' %}" width="100%"></div>
+                <div class="col-6 d-flex flex-column justify-content-center">
+                    <p style="font-size: 50px;">ABOUT US&nbsp;</p>
+                    <p>Welcome to our online report card generation website!</p>
+                    <p>Say goodbye to the hassle of manually creating report cards for each student. With just a few clicks, you can upload an Excel sheet containing student data, and our platform will automatically generate individualized report cards for each student.</p>
+                    <p>Each report card is neatly organized and includes essential details such as grades, subject-wise marks, attendance records, and any additional comments.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    {% include 'includes/footer.html' %}
+
+{% endblock %}

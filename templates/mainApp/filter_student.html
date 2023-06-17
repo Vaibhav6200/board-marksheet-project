@@ -1,0 +1,125 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %} Filter Report {% endblock %}
+{% block extra_css %}
+    <style>
+        #school_card, #student_card{
+            cursor: pointer;
+            width: 40%;
+            background: #655ADF;
+            border-radius: 30px;
+        }
+        #district, #block{
+            width: 30%;
+            border: 2px solid #1E1A56;
+        }
+        #filter-outline{
+            border-style: dashed;
+            border-color: #1E1A56;
+            border-radius: 15px;
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+    {% include 'includes/navbar.html' %}
+    <section id="filter-cards" class="my-5 w-100">
+        <div class="container">
+            <div class="d-flex justify-content-center align-items-center">
+                <a href="{% url 'app:filter_school' class_id %}" id="school_card" class="d-flex justify-content-center align-items-center py-3 px-4 mr-5">
+                    <div class="d-flex justify-content-center align-items-center">
+                        <img class="w-25" src="{% static 'img/school-filter.png' %}">
+                        <h3 class="mb-0 text-light">Filter school dice code</h3>
+                    </div>
+                </a>
+                <a href="{% url 'app:filter_student' class_id %}" id="student_card" class="d-flex justify-content-center align-items-center py-3 px-4">
+                    <img class="mx-3 " style="width: 90px;" src="{% static 'img/student-filter.png' %}">
+                    <h3 class="mb-0 text-light">filter student</h3>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Filter Student -->
+    <section id="Filter-student">
+        <div class="container">
+            <div class="d-flex justify-content-between align-items-center" style="margin-bottom: 20px;">
+                <span style="color: #1E1A56;font-size: 30px;">Filter Student</span>
+            </div>
+
+            <form action="{% url 'app:filter_student' class_id %}" method="post">
+                {% csrf_token %}
+                <div class="d-flex" style="padding: 25px;border-style: dashed;border-color: #1E1A56;border-radius: 15px;margin-bottom: 15px;">
+                    <input name="school_dice_code" name="school_dice_code" type="text" class="mr-3 px-4 w-50" style="border-radius: 15px;border-color: #1E1A56;" placeholder="Enter School Dice Code...">
+                    <button class="btn btn-primary d-flex flex-column justify-content-between align-items-center" type="submit" style="margin-right: 20px;border-radius: 30px;background: #1E1A56;width: 150px;font-size: 18px;">Go&nbsp;</button>
+                </div>
+            </form>
+
+            <div id="download-all" style="margin-top: 50px;margin-bottom: 20px;">
+                <a href="{% url 'app:downloadAll' %}" download class="btn btn-primary fw-bold d-flex flex-row justify-content-center align-items-center" style="margin-right: 20px;border-radius: 30px;background: #1E1A56;width: 24%;font-size: 18px;">
+                    Download all <i class="typcn typcn-download-outline fa-2x" style="margin-left: 20px;"></i>
+                </a>
+            </div>
+
+            <div class="input-group" style="margin-bottom: 50px;">
+                <input class="form-control" id="search-input" type="text" style="border-radius: 4px; border: 2px solid #1E1A56;" placeholder="search ...">
+                <button class="btn btn-primary" type="submit" style="background: #1E1A56;border-radius: 4px; font-size: 18px;">search</button>
+            </div>
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th style="text-align: center;">sr. no.</th>
+                            <th style="text-align: center;">Scholar no</th>
+                            <th style="text-align: center;">roll no</th>
+                            <th style="text-align: center;">name</th>
+                            <th style="text-align: center;">total grade</th>
+                            <th style="text-align: center;">action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for sheet in marksheets %}
+                        <tr>
+                            <td style="text-align: center; padding: 10px;">{{ forloop.counter }}</td>
+                            <td style="text-align: center; padding: 10px;">{{ sheet.student.scholar_no }}</td>
+                            <td style="text-align: center; padding: 10px;">{{ sheet.student.roll_no }}</td>
+                            <td style="text-align: center; padding: 10px;">{{ sheet.student.student_name }}</td>
+                            <td style="text-align: center; padding: 10px;">{{ sheet.total_grade }}</td>
+                            <td class="d-flex justify-content-center" style="padding: 10px;">
+                                <a href="{{ sheet.report_card.url }}" download target="_blank" class="btn" type="button" style="border-radius: 30px; border: 3px solid #1E1A56; font-size: 14px;">download</a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            <nav class="d-flex justify-content-center">
+                <ul class="pagination">
+                    <li class="page-item"><a class="page-link" aria-label="Previous" href="#"><span aria-hidden="true">«</span></a></li>
+                    <li class="page-item"><a class="page-link" href="#">1</a></li>
+                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                    <li class="page-item"><a class="page-link" href="#">4</a></li>
+                    <li class="page-item"><a class="page-link" href="#">5</a></li>
+                    <li class="page-item"><a class="page-link" aria-label="Next" href="#"><span aria-hidden="true">»</span></a></li>
+                </ul>
+            </nav>
+        </div>
+    </section>
+
+    <script>
+        function display_school(){
+            document.getElementById("Filter-school").style.display = "block";
+            document.getElementById("Filter-student").style.display = "none";
+
+            document.getElementById('filter_type').value = "school"
+        }
+        function display_student(){
+            document.getElementById("Filter-school").style.display = "none";
+            document.getElementById("Filter-student").style.display = "block";
+            document.getElementById('filter_type').value = "student"
+        }
+        display_school()
+    </script>
+    {% include 'includes/footer.html' %}
+{% endblock %}
