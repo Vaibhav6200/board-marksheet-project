@@ -51,39 +51,36 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'app.apps.AppConfig',
 
-    # 'django.contrib.sites',
-    # 'allauth',
-    # 'allauth.account',
-    # 'allauth.socialaccount',
-    # 'allauth.socialaccount.providers.google',
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.google',
 
-    # 'crispy_forms',
-    # 'crispy_bootstrap4',
+    'crispy_forms',
+    'crispy_bootstrap4',
 ]
 
-# CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap4"
-# CRISPY_TEMPLATE_PACK = 'Bootstrap4'
-# SOCIALACCOUNT_LOGIN_ON_GET=True
+# Crispy Forms settings
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap4"
+CRISPY_TEMPLATE_PACK = 'Bootstrap4'
 
-# # all-auth settings
-# SITE_ID = 1
 
-# AUTHENTICATION_BACKENDS = [
-#     'django.contrib.auth.backends.ModelBackend',
-#     'allauth.account.auth_backends.AuthenticationBackend',
-# ]
-# ACCOUNT_AUTHENTICATION_METHOD = "email"
-# ACCOUNT_EMAIL_REQUIRED  = True
-# ACCOUNT_USERNAME_REQUIRED  = False
+# all-auth settings
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
+]
+
+SITE_ID = 1
+ACCOUNT_EMAIL_REQUIRED  = True
+ACCOUNT_AUTHENTICATION_METHOD = "email"
 # ACCOUNT_EMAIL_VERIFICATION = "mandatory"
-# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'        # for development
-# LOGIN_REDIRECT_URL = "/"
+ACCOUNT_USERNAME_REQUIRED  = False
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'        # for development
+LOGIN_REDIRECT_URL = "/"
 
-
-# if DEBUG == False:
-#     EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'    # for production
-    # additional Informations...
-
+SOCIALACCOUNT_LOGIN_ON_GET=True
 
 
 MIDDLEWARE = [

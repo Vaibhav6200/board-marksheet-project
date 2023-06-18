@@ -418,19 +418,6 @@ def search(request):
     return render(request, "index.html", params)
 
 
-
-def login(request):
-    return render(request, "auth/login.html")
-
-
-def logout(request):
-    pass
-
-
-def register(request):
-    return render(request, "auth/signup.html")
-
-
 def about(request):
     return render(request, "mainApp/about.html")
 
