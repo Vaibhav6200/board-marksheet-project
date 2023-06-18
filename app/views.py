@@ -1,23 +1,21 @@
+import os
+import zipfile
+import pandas as pd
 from datetime import datetime
 from django.shortcuts import redirect, render
-import pandas as pd
 from .models import *
 from .pdf1Annotator import annotatePDF
 from .pdf2Annotator import annotatePDF_format2
 from .pdf3Annotator import annotatePDF_format3
-import os
 from django.db.models import Q
-from django.core.paginator import Paginator
 from dateutil import parser
-import zipfile
-from django.conf import settings
-from django.http import HttpResponse, FileResponse
-import shutil
-
-
-import os, io, zipfile
-import requests
 from django.http import HttpResponse
+from django.core.paginator import Paginator
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
+from django.core.mail import send_mail
+from django.conf import settings
+
 
 
 
@@ -51,6 +49,7 @@ def downloadAll(request):
     return response
 
 
+@login_required
 def filter_student(request, class_id):
     params = {}
     if request.method == "POST":
@@ -400,22 +399,23 @@ def index(request):
 
 
 def search(request):
-    query = request.GET.get('search')
-    params = {}
-    if query:
-        results = Marksheet.objects.filter(
-            Q(student__scholar_no=query) |
-            Q(student__roll_no=query) |
-            Q(student__school__school_dice_code=query) |
-            Q(student__student_name__icontains=query) |
-            Q(student__school__school_name__icontains=query)
-        )
-        params['details'] = results
-    else:
-        results = Marksheet.objects.all()
-        params['details'] = results
+    pass
+    # query = request.GET.get('search')
+    # params = {}
+    # if query:
+    #     results = Marksheet.objects.filter(
+    #         Q(student__scholar_no=query) |
+    #         Q(student__roll_no=query) |
+    #         Q(student__school__school_dice_code=query) |
+    #         Q(student__student_name__icontains=query) |
+    #         Q(student__school__school_name__icontains=query)
+    #     )
+    #     params['details'] = results
+    # else:
+    #     results = Marksheet.objects.all()
+    #     params['details'] = results
 
-    return render(request, "index.html", params)
+    # return render(request, "index.html", params)
 
 
 def about(request):
@@ -423,13 +423,29 @@ def about(request):
 
 
 def contact(request):
+    if request.method == "POST":
+        subject = request.POST.get('subject')
+        message = request.POST.get('message')
+        host_email = settings.EMAIL_HOST_USER
+        manager_email = settings.EMAIL_HOST_USER
+
+        send_mail(
+            subject=subject,
+            message=message,
+            from_email=host_email,
+            recipient_list= [manager_email],
+            fail_silently=True,
+        )
+
     return render(request, "mainApp/contact.html")
 
 
+@login_required
 def upload(request):
     return render(request, "mainApp/data-upload.html")
 
 
+@login_required
 def bulk_upload(request):
     if request.method == "POST" and request.FILES['csv_file']:
         selected_format = request.POST.get("print_format")
@@ -713,6 +729,7 @@ def saveIndividualFormat3(request):
         marksheet_obj.save()
 
 
+@login_required
 def individual_upload(request):
     if request.method == "POST":
         marksheet_format = request.POST.get('marksheet_format')

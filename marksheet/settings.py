@@ -81,6 +81,7 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'        # for de
 LOGIN_REDIRECT_URL = "/"
 
 SOCIALACCOUNT_LOGIN_ON_GET=True
+LOGIN_URL = '/accounts/login/'
 
 
 MIDDLEWARE = [
@@ -170,3 +171,12 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 
+
+# SMTP Settings
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+EMAIL_USE_TLS = True
+EMAIL_HOST = "smtp.gmail.com"
+EMAIL_PORT = 587
+EMAIL_HOST_USER = os.environ['EMAIL_HOST_USER']
+EMAIL_HOST_PASSWORD = os.environ['EMAIL_HOST_PASSWORD']
+DEFAULT_FROM_EMAIL = f'Celery <{EMAIL_HOST_USER}>'
