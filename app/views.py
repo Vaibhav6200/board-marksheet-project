@@ -15,7 +15,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.core.mail import send_mail
 from django.conf import settings
-
+from django.contrib import messages
 
 
 
@@ -131,13 +131,20 @@ def process_marksheet_1(data):
         physical = data.loc[row, 'physical']
         arts = data.loc[row, 'arts']
 
+
+        dob_obj = datetime.strptime(dob, '%d-%m-%Y')
+        dob_formatted = dob_obj.strftime('%Y-%m-%d')
+
+        exam_date_datetime = datetime.strptime(dob, '%d-%m-%Y')
+        exam_date_formatted = exam_date_datetime.strftime('%Y-%m-%d')
+
         report_data = {
             'scholar_no': str(scholar_no),
             'roll_no': str(roll_no),
             'student_name': student_name,
             'father_name': father_name,
             'mother_name': mother_name,
-            'dob': dob,
+            'dob': dob_formatted,
             'student_class': student_class,
             'school_name': school_name,
             'block': block,
@@ -156,12 +163,6 @@ def process_marksheet_1(data):
             'work_education': work_education,
             'physical': physical
         }
-
-        dob_obj = datetime.strptime(dob, '%d-%m-%Y')
-        dob_formatted = dob_obj.strftime('%Y-%m-%d')
-
-        exam_date_datetime = datetime.strptime(dob, '%d-%m-%Y')
-        exam_date_formatted = exam_date_datetime.strftime('%Y-%m-%d')
 
         # Generate our Marksheet
         output_file_name = annotatePDF(report_data)
@@ -223,13 +224,19 @@ def process_marksheet_2(data):
         physical = data.loc[row, 'physical']
         arts = data.loc[row, 'arts']
 
+        dob_obj = datetime.strptime(dob, '%d-%m-%Y')
+        dob_formatted = dob_obj.strftime('%Y-%m-%d')
+
+        exam_date_datetime = datetime.strptime(dob, '%d-%m-%Y')
+        exam_date_formatted = exam_date_datetime.strftime('%Y-%m-%d')
+
         report_data = {
             'scholar_no': str(scholar_no),
             'roll_no': str(roll_no),
             'student_name': student_name,
             'father_name': father_name,
             'mother_name': mother_name,
-            'dob': dob,
+            'dob': dob_formatted,
             'student_class': student_class,
             'school_name': school_name,
             'block': block,
@@ -249,12 +256,6 @@ def process_marksheet_2(data):
             'work_education': work_education,
             'physical': physical
         }
-
-        dob_datetime = parser.parse(dob)
-        dob_formatted = dob_datetime.strftime('%Y-%m-%d')
-
-        exam_date_datetime = parser.parse(examination_date)
-        exam_date_formatted = exam_date_datetime.strftime('%Y-%m-%d')
 
         # Generate our Marksheet
         output_file_name = annotatePDF_format2(report_data)
@@ -337,6 +338,11 @@ def process_marksheet_3(data):
         physical_80 = int(data.loc[row, 'physical_80'])
         physical_100 = int(data.loc[row, 'physical_100'])
 
+        dob_obj = datetime.strptime(dob, '%d-%m-%Y')
+        dob_formatted = dob_obj.strftime('%Y-%m-%d')
+
+        exam_date_datetime = datetime.strptime(dob, '%d-%m-%Y')
+        exam_date_formatted = exam_date_datetime.strftime('%Y-%m-%d')
 
         report_data = {
             'scholar_no': str(scholar_no),
@@ -344,7 +350,7 @@ def process_marksheet_3(data):
             'student_name': student_name,
             'father_name': father_name,
             'mother_name': mother_name,
-            'dob': dob,
+            'dob': dob_formatted,
             'swayam_pathi': swayam_pathi,
             'school_name': school_name,
             'district': district,
@@ -381,12 +387,6 @@ def process_marksheet_3(data):
             "physical_100": physical_100,
         }
 
-        dob_obj = datetime.strptime(dob, '%d-%m-%Y')
-        dob_formatted = dob_obj.strftime('%Y-%m-%d')
-
-        exam_date_datetime = datetime.strptime(dob, '%d-%m-%Y')
-        exam_date_formatted = exam_date_datetime.strftime('%Y-%m-%d')
-
         # Generate our Marksheet
         output_file_name = annotatePDF_format3(report_data)
         pdf_file_path = os.path.join('pdf_files', output_file_name)
@@ -413,7 +413,6 @@ def process_marksheet_3(data):
         marksheet_obj = Marksheet(student=student_obj, marks=marks_obj, marksheet_id=marksheet_id, result=result, shreni=shreni, percentage=percentage, examination_date=exam_date_formatted)
         marksheet_obj.report_card.name = pdf_file_path
         marksheet_obj.save()
-
 
 
 
@@ -471,6 +470,8 @@ def bulk_upload(request):
         elif selected_format == "format_3":
             process_marksheet_3(data)
 
+
+        messages.success(request, 'File Uploaded Successfully')
         return redirect('/bulk_upload')
 
     return render(request, "mainApp/bulk-data-upload.html")
@@ -605,8 +606,6 @@ def saveIndividualFormat2(request):
 
     output_file_name = annotatePDF_format2(report_data)
     pdf_file_path = os.path.join('pdf_files', output_file_name)
-
-    exam_date_obj = datetime.str
 
     school_obj = None
     try:

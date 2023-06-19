@@ -12,12 +12,14 @@ fill_color = (0.392, 0.443, 0.651)
 
 def convert_date_in_words(date_string):
     date_parts = date_string.split("-")
-    day = num2words(int(date_parts[0]))
-    date_object = datetime.strptime(date_string, "%d-%m-%Y")
+    day = num2words(int(date_parts[2]))
+    date_object = datetime.strptime(date_string, "%Y-%m-%d")
     month = date_object.strftime("%B").lower()
-    year = num2words(int(date_parts[2]))
+    year = num2words(int(date_parts[0]))
     date = f"{day} {month} {year}"
     return date
+
+
 
 
 def annotatePDF_format2(data):
@@ -128,7 +130,7 @@ def annotatePDF_format2(data):
     date_in_words = convert_date_in_words(date_string)
     annotator.add_annotation(
                 'text',
-                    Location(x1=290, y1=460, x2=520, y2=472, page=0),
+                    Location(x1=290, y1=460, x2=560, y2=472, page=0),
                     Appearance(content=date_in_words, font_size=10,  fill=fill_color),
                     )
 
