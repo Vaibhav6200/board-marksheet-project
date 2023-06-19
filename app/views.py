@@ -49,6 +49,22 @@ def downloadAll(request):
     return response
 
 
+
+
+@login_required
+def search(request, class_id):
+    params = {}
+    if request.method == "POST":
+        dice_code = request.POST.get('dice_code')
+        search_value = request.POST.get('search-input')
+
+    # else:
+    #     results = Marksheet.objects.all()
+    #     params['details'] = results
+
+    # return render(request, "index.html", params)
+
+
 @login_required
 def filter_student(request, class_id):
     params = {}
@@ -56,6 +72,8 @@ def filter_student(request, class_id):
         dice_code = request.POST.get('school_dice_code')
         marksheets = Marksheet.objects.filter(student__school__school_dice_code=dice_code)
         params['marksheets'] = marksheets
+        params['dice_code'] = dice_code
+
 
         cwd = os.getcwd()
         zip_path = os.path.join(cwd, 'media', 'temp_ZIP.zip')
@@ -68,6 +86,18 @@ def filter_student(request, class_id):
 
                 myZip.write(filepath, filename)
 
+
+        search_query = request.POST.get('search-input', None)
+        if search and len(search_query) != 0:
+            dice_code = request.POST.get('dice_code')
+            results = Marksheet.objects.filter(
+                Q(student__school__school_dice_code=dice_code) &
+                (Q(student__roll_no=search_query) |
+                 Q(student__student_name__icontains=search_query) |
+                 Q(student__school__school_name__icontains=search_query))
+                )
+            params['marksheets'] = results      # updating marksheets according to search parameter
+            params['dice_code'] = dice_code
     params['class_id'] = class_id
     return render(request, "mainApp/filter_student.html", params)
 
@@ -397,27 +427,6 @@ def index(request):
     # params = {'details': data}
 
 
-
-def search(request):
-    pass
-    # query = request.GET.get('search')
-    # params = {}
-    # if query:
-    #     results = Marksheet.objects.filter(
-    #         Q(student__scholar_no=query) |
-    #         Q(student__roll_no=query) |
-    #         Q(student__school__school_dice_code=query) |
-    #         Q(student__student_name__icontains=query) |
-    #         Q(student__school__school_name__icontains=query)
-    #     )
-    #     params['details'] = results
-    # else:
-    #     results = Marksheet.objects.all()
-    #     params['details'] = results
-
-    # return render(request, "index.html", params)
-
-
 def about(request):
     return render(request, "mainApp/about.html")
 
@@ -596,6 +605,8 @@ def saveIndividualFormat2(request):
 
     output_file_name = annotatePDF_format2(report_data)
     pdf_file_path = os.path.join('pdf_files', output_file_name)
+
+    exam_date_obj = datetime.str
 
     school_obj = None
     try:

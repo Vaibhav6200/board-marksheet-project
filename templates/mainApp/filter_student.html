@@ -53,28 +53,31 @@
                     <input name="school_dice_code" name="school_dice_code" type="text" class="mr-3 px-4 w-50" style="border-radius: 15px;border-color: #1E1A56;" placeholder="Enter School Dice Code...">
                     <button class="btn btn-primary d-flex flex-column justify-content-between align-items-center" type="submit" style="margin-right: 20px;border-radius: 30px;background: #1E1A56;width: 150px;font-size: 18px;">Go&nbsp;</button>
                 </div>
+
+                <div id="download-all" style="margin-top: 50px;margin-bottom: 20px;">
+                    <a href="{% url 'app:downloadAll' %}" download class="btn btn-primary fw-bold d-flex flex-row justify-content-center align-items-center" style="margin-right: 20px;border-radius: 30px;background: #1E1A56;width: 24%;font-size: 18px;">
+                        Download all <i class="typcn typcn-download-outline fa-2x" style="margin-left: 20px;"></i>
+                    </a>
+                </div>
+
+                <input type="hidden" name="dice_code" value="{{ dice_code }}" id="dice_code">
+                <div class="input-group" style="margin-bottom: 50px;">
+                    <input class="form-control" name="search-input" id="search-input" type="text" style="border-radius: 4px; border: 2px solid #1E1A56;" placeholder="search ...">
+                    <button class="btn btn-primary" type="submit" style="background: #1E1A56;border-radius: 4px; font-size: 18px;">search</button>
+                </div>
             </form>
 
-            <div id="download-all" style="margin-top: 50px;margin-bottom: 20px;">
-                <a href="{% url 'app:downloadAll' %}" download class="btn btn-primary fw-bold d-flex flex-row justify-content-center align-items-center" style="margin-right: 20px;border-radius: 30px;background: #1E1A56;width: 24%;font-size: 18px;">
-                    Download all <i class="typcn typcn-download-outline fa-2x" style="margin-left: 20px;"></i>
-                </a>
-            </div>
-
-            <div class="input-group" style="margin-bottom: 50px;">
-                <input class="form-control" id="search-input" type="text" style="border-radius: 4px; border: 2px solid #1E1A56;" placeholder="search ...">
-                <button class="btn btn-primary" type="submit" style="background: #1E1A56;border-radius: 4px; font-size: 18px;">search</button>
-            </div>
             <div class="table-responsive">
                 <table class="table">
                     <thead>
                         <tr>
-                            <th style="text-align: center;">sr. no.</th>
+                            <th style="text-align: center;">Sr. no.</th>
                             <th style="text-align: center;">Scholar no</th>
-                            <th style="text-align: center;">roll no</th>
-                            <th style="text-align: center;">name</th>
-                            <th style="text-align: center;">total grade</th>
-                            <th style="text-align: center;">action</th>
+                            <th style="text-align: center;">Roll no</th>
+                            <th style="text-align: center;">Name</th>
+                            <th style="text-align: center;">Class</th>
+                            <th style="text-align: center;">Grade / Percentage</th>
+                            <th style="text-align: center;">Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -84,7 +87,13 @@
                             <td style="text-align: center; padding: 10px;">{{ sheet.student.scholar_no }}</td>
                             <td style="text-align: center; padding: 10px;">{{ sheet.student.roll_no }}</td>
                             <td style="text-align: center; padding: 10px;">{{ sheet.student.student_name }}</td>
-                            <td style="text-align: center; padding: 10px;">{{ sheet.total_grade }}</td>
+                            <td style="text-align: center; padding: 10px;">{{ sheet.student.student_class }}</td>
+
+                            {% if sheet.total_grade %}
+                                <td style="text-align: center; padding: 10px;">{{ sheet.total_grade }}</td>
+                            {% else %}
+                                <td style="text-align: center; padding: 10px;">{{ sheet.percentage }}</td>
+                            {% endif %}
                             <td class="d-flex justify-content-center" style="padding: 10px;">
                                 <a href="{{ sheet.report_card.url }}" download target="_blank" class="btn" type="button" style="border-radius: 30px; border: 3px solid #1E1A56; font-size: 14px;">download</a>
                             </td>
