@@ -419,12 +419,6 @@ def process_marksheet_3(data):
 def index(request):
     return render(request, "mainApp/index.html")
 
-    # all_marksheets = Marksheet.objects.all()
-    # paginator = Paginator(all_marksheets, 10)
-    # page_number = request.GET.get("page")
-    # data = paginator.get_page(page_number)
-    # params = {'details': data}
-
 
 def about(request):
     return render(request, "mainApp/about.html")
@@ -752,6 +746,8 @@ def individual_upload(request):
 
         if marksheet_format == "3":
             saveIndividualFormat3(request)
+
+        messages.success(request, 'Record Added Successfully')
 
     return render(request, "mainApp/individual_data_entry.html")
 

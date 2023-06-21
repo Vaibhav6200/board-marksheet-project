@@ -10,7 +10,7 @@
                 <div class="col-6 d-flex flex-column justify-content-center">
                     <p style="font-size: 50px;color: #1e1a56;">CONTACT US&nbsp;</p>
                     <div>
-                        <form action="{% url 'app:contact' %}" method="post">
+                        <div>
                             {% csrf_token %}
                             <div class="row" style="margin-bottom: 10px;">
                                 <div class="col"><input class="px-3 py-2" name="full_name" type="text" placeholder="full name" style="width: 100%;border-radius: 5px;border: 2px solid rgba(30,26,86,0.5);"></div>
@@ -24,7 +24,7 @@
                                 <div class="col"><textarea class="px-3  py-2" name="message" placeholder="enter your message..." style="border-radius: 5px;width: 100%;border: 2px solid rgba(30,26,86,0.5);" rows="5"></textarea></div>
                             </div>
                             <div><button class="btn btn-primary" type="submit" style="font-size: 15px;background: #1e1a56;border-radius: 5px;">send message</button></div>
-                        </form>
+                        </div>
                     </div>
                 </div>
             </div>
