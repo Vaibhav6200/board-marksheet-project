@@ -95,3 +95,4 @@ class Marksheet(models.Model):
     report_card = models.FileField(upload_to='pdf_files/', max_length=255, default=None, null=True)
 
     object = models.Manager
+

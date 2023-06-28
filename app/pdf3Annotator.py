@@ -3,6 +3,13 @@ from django.conf import settings
 import os
 from datetime import datetime
 from num2words import num2words
+from translate import Translator
+
+
+def translate_text(text):
+    translator = Translator(to_lang="hi")  # Target language: Hindi
+    translation = translator.translate(text)
+    return translation
 
 
 fill_color = (0.514, 0.51, 0.635)
@@ -89,11 +96,13 @@ def annotatePDF_format3(data):
 
     # Date of Birth in words
     date_string = data['dob']
-    date_in_words = convert_date_in_words(date_string)
+    date_in_english_words = convert_date_in_words(date_string)
+    # date_in_hindi = translate_text(date_in_english_words)
+
     annotator.add_annotation(
                 'text',
                     Location(x1=130, y1=505, x2=500, y2=517, page=0),
-                    Appearance(content=date_in_words, font_size=10,  fill=fill_color),
+                    Appearance(content=date_in_english_words, font_size=10,  fill=fill_color),
                     )
 
     # School Name

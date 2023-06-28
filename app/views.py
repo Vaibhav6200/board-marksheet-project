@@ -16,6 +16,13 @@ from django.contrib.auth.models import User
 from django.core.mail import send_mail
 from django.conf import settings
 from django.contrib import messages
+from translate import Translator
+
+
+def translate_text(text):
+    translator = Translator(to_lang="hi")  # Target language: Hindi
+    translation = translator.translate(text)
+    return translation
 
 
 
@@ -49,7 +56,12 @@ def downloadAll(request):
     return response
 
 
-
+def download_csv(request, filename):
+    path = os.path.join(settings.MEDIA_ROOT, f'{filename}.csv')
+    with open(path, 'rb') as file:
+        response = HttpResponse(file, content_type='text/csv')
+        response['Content-Disposition'] = f'attachment; filename="{filename}.csv"'
+        return response
 
 @login_required
 def search(request, class_id):
@@ -472,6 +484,7 @@ def bulk_upload(request):
 
 
 def saveIndividualFormat1(request):
+
     scholar_no = request.POST.get('scholar_no')
     roll_no = request.POST.get('roll_no')
     student_name = request.POST.get('student_name')
@@ -498,17 +511,19 @@ def saveIndividualFormat1(request):
     physical = request.POST.get('physical')
     arts = request.POST.get('arts')
 
+
     report_data = {
         'scholar_no': str(scholar_no),
         'roll_no': str(roll_no),
+        # 'student_name': translate_text(student_name),
         'student_name': student_name,
         'father_name': father_name,
         'mother_name': mother_name,
         'dob': dob,
         'student_class': student_class,
         'school_name': school_name,
-        'block': block,
         'district': district,
+        'block': block,
         'school_dice_code': str(school_dice_code),
         'examination_center_code': str(examination_center_code),
         'marksheet_id': str(marksheet_id),
@@ -523,6 +538,12 @@ def saveIndividualFormat1(request):
         'work_education': work_education,
         'physical': physical
     }
+
+    # Create Excel Scheet
+    df = pd.DataFrame([report_data])
+    path = os.path.join(settings.MEDIA_ROOT, 'individual_data_class_5.csv')
+    df.to_csv(path, mode='a', header=False, index=False)
+
 
     output_file_name = annotatePDF(report_data)
     pdf_file_path = os.path.join('pdf_files', output_file_name)
@@ -580,12 +601,12 @@ def saveIndividualFormat2(request):
         'dob': dob,
         'student_class': student_class,
         'school_name': school_name,
-        'block': block,
         'district': district,
+        'block': block,
         'school_dice_code': str(school_dice_code),
         'examination_center_code': str(examination_center_code),
-        'marksheet_id': str(marksheet_id),
         'examination_date': examination_date,
+        'marksheet_id': str(marksheet_id),
         'total_grade': total_grade,
         'hindi': hindi,
         'english': english,
@@ -597,6 +618,12 @@ def saveIndividualFormat2(request):
         'work_education': work_education,
         'physical': physical
     }
+
+    # Create Excel Scheet
+    df = pd.DataFrame([report_data])
+    path = os.path.join(settings.MEDIA_ROOT, 'individual_data_class_8.csv')
+    df.to_csv(path, mode='a', header=False, index=False)
+
 
     output_file_name = annotatePDF_format2(report_data)
     pdf_file_path = os.path.join('pdf_files', output_file_name)
@@ -679,6 +706,9 @@ def saveIndividualFormat3(request):
             'swayam_pathi': swayam_pathi,
             'school_name': school_name,
             'district': district,
+            'block': block,
+            'school_dice_code': school_dice_code,
+            'examination_center_code': examination_center_code,
             'marksheet_id': str(marksheet_id),
             "result": result,
             "shreni": shreni,
@@ -712,6 +742,12 @@ def saveIndividualFormat3(request):
             "physical_100": physical_100,
         }
 
+        # Create Excel Scheet
+        df = pd.DataFrame([report_data])
+        path = os.path.join(settings.MEDIA_ROOT, 'individual_data_class_8_old.csv')
+        df.to_csv(path, mode='a', header=False, index=False)
+
+
         output_file_name = annotatePDF_format3(report_data)
         pdf_file_path = os.path.join('pdf_files', output_file_name)
 
@@ -733,6 +769,7 @@ def saveIndividualFormat3(request):
         marksheet_obj.save()
 
 
+
 @login_required
 def individual_upload(request):
     if request.method == "POST":
@@ -750,5 +787,4 @@ def individual_upload(request):
         messages.success(request, 'Record Added Successfully')
 
     return render(request, "mainApp/individual_data_entry.html")
-
 

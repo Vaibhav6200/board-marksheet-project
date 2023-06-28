@@ -1,9 +1,16 @@
+# -*- coding: utf-8 -*-
 from pdf_annotate import PdfAnnotator, Appearance, Location
 from django.conf import settings
 import os
 from datetime import datetime
 from num2words import num2words
+from translate import Translator
 
+
+# def translate_text(text):
+#     translator = Translator(to_lang="hi")  # Target language: Hindi
+#     translation = translator.translate(text)
+#     return translation
 
 
 hex_color = "#696083"
@@ -78,10 +85,11 @@ def annotatePDF(data):
     #             )
 
     # Students Name
+    student_name = data['student_name']
     annotator.add_annotation(
                 'text',
                     Location(x1=210, y1=585, x2=350, y2=600, page=0),
-                    Appearance(content=data['student_name'], font_size=10,  fill=fill_color),
+                    Appearance(content=student_name, font_size=10,  fill=fill_color),
                     )
     # Mothers Name
     annotator.add_annotation(
@@ -105,11 +113,13 @@ def annotatePDF(data):
     # Date of Birth (in words)
 
     date_string = data['dob']
-    date_in_words = convert_date_in_words(date_string)
+    date_in_english_words = convert_date_in_words(date_string)
+    # date_in_hindi = translate_text(date_in_english_words)
+
     annotator.add_annotation(
                 'text',
                     Location(x1=80, y1=533, x2=500, y2=548, page=0),
-                    Appearance(content=date_in_words, font_size=10,  fill=fill_color),
+                    Appearance(content=date_in_english_words, font_size=10,  fill=fill_color),
                     )
 
     # ***** Grades Annotations *****

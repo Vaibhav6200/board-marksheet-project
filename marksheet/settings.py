@@ -36,9 +36,9 @@ SECRET_KEY = 'django-insecure-$ajb-r$9c55n6jx1nuj0e9_(r^np99j!h^q977+_uw27#s6mf7
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
+# DEBUG = False
 
 ALLOWED_HOSTS = ['*']
-
 
 
 # Application definition
@@ -64,7 +64,7 @@ INSTALLED_APPS = [
 
 # Crispy Forms settings
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap4"
-CRISPY_TEMPLATE_PACK = 'Bootstrap4'
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 
 # all-auth settings
@@ -178,8 +178,10 @@ EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 EMAIL_USE_TLS = True
 EMAIL_HOST = "smtp.gmail.com"
 EMAIL_PORT = 587
-EMAIL_HOST_USER = os.environ['EMAIL_HOST_USER']
-EMAIL_HOST_PASSWORD = os.environ['EMAIL_HOST_PASSWORD']
+# EMAIL_HOST_USER = os.environ['EMAIL_HOST_USER']
+# EMAIL_HOST_PASSWORD = os.environ['EMAIL_HOST_PASSWORD']
+EMAIL_HOST_USER = 'admin@gmail.com'
+EMAIL_HOST_PASSWORD = 'password'
 DEFAULT_FROM_EMAIL = f'Celery <{EMAIL_HOST_USER}>'
 
 
