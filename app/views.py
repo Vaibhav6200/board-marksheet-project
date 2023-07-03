@@ -48,8 +48,8 @@ def filter_school(request, class_id):
 
 
 def downloadAll(request):
-    cwd = os.getcwd()
-    zip_path = os.path.join(cwd, 'media', 'temp_ZIP.zip')
+    zip_path = os.path.join(settings.MEDIA_ROOT, 'temp_ZIP.zip')
+
     zip_file = open(zip_path, 'rb')
     response = HttpResponse(zip_file, content_type='application/zip')
     response['Content-Disposition'] = 'attachment;'
@@ -87,13 +87,13 @@ def filter_student(request, class_id):
         params['dice_code'] = dice_code
 
 
-        cwd = os.getcwd()
-        zip_path = os.path.join(cwd, 'media', 'temp_ZIP.zip')
+
+        zip_path = os.path.join(settings.MEDIA_ROOT, 'temp_ZIP.zip')
         with zipfile.ZipFile(zip_path, 'w', compression=zipfile.ZIP_DEFLATED) as myZip:
 
             for sheet in marksheets:
                 name = sheet.report_card.name
-                filepath = os.path.join(cwd, 'media', name)
+                filepath = os.path.join(settings.MEDIA_ROOT, name)
                 filename = name.split('\\')[-1]
 
                 myZip.write(filepath, filename)
@@ -484,7 +484,6 @@ def bulk_upload(request):
 
 
 def saveIndividualFormat1(request):
-
     scholar_no = request.POST.get('scholar_no')
     roll_no = request.POST.get('roll_no')
     student_name = request.POST.get('student_name')
